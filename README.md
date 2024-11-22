@@ -9,6 +9,7 @@
 3. Sempre nel terminale, al termine del comando composer install, eseguo il comando php artisan key:generate
 
 4. Sempre nel terminale, al termine dell'esecuzione di php artisan key:generate, eseguiamo il comando npm install (oppure, npm i)
+php artisan storage:link
 
 5. Sempre nel terminale, al termine di npm install, eseguire il comando npm run build
 - Al posto di npm run build, potreste eseguire npm run dev e lasciarlo attivo
