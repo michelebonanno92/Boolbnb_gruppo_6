@@ -1,9 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Apartment;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+
+// MODELS
+use App\Models\ {
+    Apartment,
+    Message,
+    Service,
+    Sponsorship,
+    User,
+    View
+};
 
 class ApartmentController extends Controller
 {
@@ -12,7 +23,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
