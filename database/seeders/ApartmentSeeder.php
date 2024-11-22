@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 // Models
 use App\Models\Apartment;
 use App\Models\User;
+use App\Models\View;
 
 
 class ApartmentSeeder extends Seeder
