@@ -88,10 +88,24 @@ class ServiceSeeder extends Seeder
         ];
 
         foreach ($allServices as $service) {
-            Service::create([
+            $newService = Service::create([
                 'service_name' => $service['title'],
                 'service_icon' => $service['icon']
             ]);
+
+            $apartmentIds = [];
+            $apartmentCount = Apartment::count();
+
+            for($i = 0; $i < rand(0, $apartmentCount); $i++) {
+
+                $randomApartment = Apartment::inRandomOrder()->first();
+
+                if(!in_array($randomApartment->id, $apartmentIds)) {
+                    $apartmentIds[] = $randomApartment->id;
+                }
+
+                $newService->apartments()->sync($apartmentIds);
+            }
         }
     }
 }

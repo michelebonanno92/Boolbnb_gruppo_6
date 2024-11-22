@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('apartment_service', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('apartment_id')->unique();
+            $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')
                     ->references('id')
                     ->on('apartments')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-            $table->unsignedBigInteger('service_id')->unique();
+            $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')
                     ->references('id')
                     ->on('services')
