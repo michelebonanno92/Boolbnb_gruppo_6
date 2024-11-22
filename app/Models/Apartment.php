@@ -34,4 +34,8 @@ class Apartment extends Model
     {
         return $this->hasMany(View::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
