@@ -2,9 +2,9 @@
 
 @section('main-content')
     <div class="row">
-        <a href="{{route('homepage.index') }}" class="btn btn-primary w-100">
+        {{-- <a href="{{route('Welcome') }}" class="btn btn-primary w-100">
             Tutti gli appartamenti
-        </a>
+        </a> --}}
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -17,5 +17,12 @@
             </div>
         </div>
 
+        <ul>
+            @foreach ($apartments as $apartment)
+            <li>
+                {{ $apartment->title }}
+            </li> 
+            @endforeach
+        </ul>
     </div>
 @endsection

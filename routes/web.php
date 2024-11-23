@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
+use App\Http\Controllers\ApartmentController as ApartmentController;
+
 
 
 /*
@@ -28,8 +30,12 @@ Route::prefix('admin')
 
     Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
 
-    Route::resource('apartments', AdminApartmentController::class);
+    // Route::resource('apartments', AdminApartmentController::class);
 
 });
+
+Route::resource('homepage', ApartmentController::class);
+
+
 
 require __DIR__.'/auth.php';
