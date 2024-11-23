@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+
+//Helpers
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Http\Request;
 
 // MODELS
@@ -42,14 +46,33 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|min:6|max:255'
-            
-        ],[
-            'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
-            'type_id.exists' => 'tipologia non valida',
-            'file.max' => 'immagine troppo grande'
-
+            'title' => 'required|min:3|max:255',
+            // 'description' => 'required|min:3|max:4096',
+            'rooms' => 'required|min:1|max:20',
+            'beds' => 'required|min:1|max:33',
+            'toilets' => 'required|min:1|max:10',
+            'square_meters' => 'required|min:1|max:300',
+            'address' => 'required|min:10|max:255',
+            'image' => 'nullable|image|max:2048',
+            // 'visible' => 'nullable|in:1,0,true,false',
         ]);
+
+        $data['slug'] = str()->slug($data['title']);
+        // $data['visible'] = isset($data['visible']);
+
+        // if (isset($data['image'])) {
+        //     $imagePath = Storage::put('uploads', $data['image']);
+        //     $data['image'] = $imagePath;
+        // }
+
+        // dd($data);
+        $apartment = Apartment::create($data);
+
+        // $apartment->services()->sync($data['services'] ?? []);
+
+
+        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->id]);
+
     }
 
     /**

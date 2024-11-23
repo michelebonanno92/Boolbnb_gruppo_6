@@ -19,15 +19,16 @@ return new class extends Migration
 
 
 
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->smallInteger('rooms')->nullable();
-            $table->smallInteger('beds')->nullable();
-            $table->smallInteger('toilets')->nullable();
-            $table->smallInteger('square_meters')->nullable();
-            $table->string('address');
-            $table->decimal('latitude', 11,8);
-            $table->decimal('longitude', 11,8);
+            $table->string('title', 128)->required();
+            $table->string('slug', 128)->unique();
+            $table->text('description', 4096)->nullable();
+            $table->smallInteger('rooms')->required()->unsigned();
+            $table->smallInteger('beds')->required()->unsigned();
+            $table->smallInteger('toilets')->required()->unsigned();
+            $table->smallInteger('square_meters')->required()->unsigned();
+            $table->string('address')->required();
+            $table->decimal('latitude', 11,8)->nullable();
+            $table->decimal('longitude', 11,8)->nullable();
             $table->string('image', 2048)->nullable();
             $table->boolean('visible')->default(false);
             $table->integer('messages')->nullable();

@@ -32,6 +32,8 @@ class ApartmentSeeder extends Seeder
             Apartment::create([
                 'title' => $title,
                 'slug' => str()->slug($title),
+                'address' => fake()->address(),
+                'description' => fake()->text(),
                 'rooms' => rand(1,4),
                 'beds' => rand(1,6),
                 'toilets' => rand(1,3),

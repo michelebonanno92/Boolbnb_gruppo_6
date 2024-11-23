@@ -11,10 +11,11 @@
   {{-- enctype="multipart/form-data" serve per inviare i file in un form --}}
     @csrf
 
+    {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
     <div class="mb-3">
-      <label for="file" class="form-label">Immagine</label>
-      <input type="file" class="form-control" id="file"  name="file" required >
-      @error('file')
+      <label for="image" class="form-label">Immagine</label>
+      <input type="file" class="form-control" id="image"  name="image" >
+      @error('image')
       <div class="alert alert-danger mt-2">
         Errore immagine: {{ $message }}
       </div>
@@ -23,7 +24,7 @@
 
     <div class="mb-3">
       <label for="title" class="form-label">Titolo</label>
-      <input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title')}}" required maxlength="255">
+      <input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title')}}" required minlength="3" maxlength="255">
       @error('title')
         <div class="alert alert-danger mt-2">
           Errore Titolo: {{ $message }}
@@ -69,6 +70,34 @@
           Errore metri quadri: {{ $message }}
         </div>
       @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Indirizzo</label>
+      <input type="text" class="form-control" id="address"  name="address" placeholder="Inserisci l'indirizzo..." value="{{old('address')}}" required minlength="10" maxlength="255">
+      @error('address')
+        <div class="alert alert-danger mt-2">
+          Errore Indirizzo: {{ $message }}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <div>
+          <label class="form-label">Visibilità:</label>
+      </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="visible" name="true" value="1">
+            <label class="form-check-label" for="visible">
+                Visibile
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="visible" name="false" value="0">
+          <label class="form-check-label" for="visible">
+              Non Visibile
+          </label>
+      </div>
     </div>
 
   
