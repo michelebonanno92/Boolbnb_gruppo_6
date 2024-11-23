@@ -33,7 +33,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.apartments.create');
     }
 
     /**
@@ -41,7 +41,15 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:6|max:255'
+            
+        ],[
+            'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
+            'type_id.exists' => 'tipologia non valida',
+            'file.max' => 'immagine troppo grande'
+
+        ]);
     }
 
     /**
@@ -49,7 +57,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
+
     }
 
     /**
