@@ -34,6 +34,9 @@ Route::prefix('admin')
 
 });
 
+// Restituisce i punti in formato JSON
+Route::get('api-points', [ApartmentController::class, 'getPoints'])->name('welcome.points');
+
 Route::resource('homepage', ApartmentController::class);
 
 Route::post('/search-address', [ApartmentController::class, 'searchAddress'])->name('search.address');
