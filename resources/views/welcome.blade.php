@@ -2,7 +2,7 @@
 
 @section('main-content')
     <div class="row">
-        <a href="{{route('homepage.index') }}" class="btn btn-primary w-100">
+        <a href="{{route('admin.apartments.index') }}" class="btn btn-primary w-100">
             Tutti gli appartamenti
         </a>
         <div class="col">

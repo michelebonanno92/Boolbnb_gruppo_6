@@ -1,6 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 
-main {
-    background-color: lightcoral;
+// main {
+//     background-color: lightcoral;
+// }
+
+.my-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
 }
 

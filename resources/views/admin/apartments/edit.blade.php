@@ -121,7 +121,7 @@
 
   
   <button type="submit" class="btn btn-primary w-100">
-    + Aggiungi
+    + Modifica
    </button>
 </form>
 @endsection
