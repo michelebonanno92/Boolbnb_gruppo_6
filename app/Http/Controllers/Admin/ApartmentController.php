@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\TomTomService;
 
 
 //Helpers
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Http\Request;
 
 // MODELS
@@ -22,6 +22,8 @@ use App\Models\ {
 
 class ApartmentController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
@@ -57,20 +59,25 @@ class ApartmentController extends Controller
             // 'visible' => 'nullable|in:1,0,true,false',
         ]);
 
-        $data['slug'] = str()->slug($data['title']);
-        // $data['visible'] = isset($data['visible']);
+        $coordinates = app(\App\Services\TomTomService::class)->searchAddress($data['address']);
 
-        // if (isset($data['image'])) {
-        //     $imagePath = Storage::put('uploads', $data['image']);
-        //     $data['image'] = $imagePath;
-        // }
+        if (!$coordinates) {
+            return back()->withErrors(['address' => 'Impossibile ottenere le coordinate per questo indirizzo.']);
+        }
+
+        // Aggiungi le coordinate ai dati
+        $data['latitude'] = $coordinates['lat'];
+        $data['longitude'] = $coordinates['lon'];
+
+        $data['slug'] = str()->slug($data['title']);
+        
 
         $data['visible'] = $request->boolean('visible');
 
-        // dd($data);
+        
         $apartment = Apartment::create($data);
 
-        // $apartment->services()->sync($data['services'] ?? []);
+       
 
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->id]);
