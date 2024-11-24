@@ -32,7 +32,7 @@ class ApartmentController extends Controller
 
     public function getPoints()
     {
-        $apartments = Apartment::get(['latitude', 'longitude', 'title']);
+        $apartments = Apartment::all(['latitude', 'longitude', 'title']);
 
         $points = [];
 
