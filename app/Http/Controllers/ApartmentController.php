@@ -32,14 +32,31 @@ class ApartmentController extends Controller
 
     public function getPoints()
     {
+        $apartments = Apartment::get(['latitude', 'longitude', 'title']);
+
+        $points = [];
+
+        foreach ($apartments as $apartment) {
+            $points[] = [
+                'latitude' => $apartment->latitude,
+                'longitude' => $apartment->longitude,
+                'title' => $apartment->title,
+            ];
+            
+        };
+
+        // dd($points);
+
         // Dati di esempio (simula dati reali)
-        $points = [
-            ['lat' => 52.377956, 'lon' => 4.897070, 'name' => "Ristorante Italiano"],
-            ['lat' => 52.376447, 'lon' => 4.908168, 'name' => "Caffetteria Centrale"],
-            ['lat' => 52.378612, 'lon' => 4.900254, 'name' => "Parco Locale"]
-        ];
+        // $points = [
+        //     ['lat' => 44.466667, 'lon' => 11.433333, 'name' => "Ristorante Italiano"],
+        //     ['lat' => 52.376447, 'lon' => 4.908168, 'name' => "Caffetteria Centrale"],
+        //     ['lat' => 52.378612, 'lon' => 4.900254, 'name' => "Parco Locale"]
+        // ];
 
         return response()->json($points);
+
+        
     }
 
     /**

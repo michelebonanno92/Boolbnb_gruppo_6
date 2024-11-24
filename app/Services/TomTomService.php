@@ -20,9 +20,10 @@ class TomTomService
         $url = "https://api.tomtom.com/search/2/geocode/{$query}.json?key={$this->apiKey}";
 
         try {
-            $response = Http::withOptions([
-                'verify' => false, // Disabilita la verifica SSL
-            ])->get($url);
+            // $response = Http::withOptions([
+            //     'verify' => false, // Disabilita la verifica SSL
+            // ])->get($url);
+            $response = Http::get($url);
 
                 if ($response->successful()) {
                     $data = $response->json();
@@ -40,7 +41,6 @@ class TomTomService
             } catch (\Exception $e) {
                 return ['error' => $e->getMessage()];
             }
-            // $response = Http::get($url);
 
             
 
