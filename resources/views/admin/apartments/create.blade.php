@@ -91,8 +91,8 @@
               </label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="visible" id="visible" value="false">
-              <label class="form-check-label" for="visible">
+              <input class="form-check-input" type="radio" name="visible" id="not-visible" value="false">
+              <label class="form-check-label" for="not-visible">
                 Nascondi
               </label>
           </div>

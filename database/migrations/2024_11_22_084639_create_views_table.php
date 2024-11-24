@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             //foreign key
             $table->unsignedBigInteger('apartment_id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onUpdate('cascade')->onDelete('cascade');
 
 
             $table->date('view_date');

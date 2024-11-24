@@ -91,7 +91,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.edit', compact('apartment'));
+
     }
 
     /**
@@ -99,7 +100,36 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:3|max:255',
+            // 'description' => 'required|min:3|max:4096',
+            'rooms' => 'required|min:1|max:20',
+            'beds' => 'required|min:1|max:33',
+            'toilets' => 'required|min:1|max:10',
+            'square_meters' => 'required|min:1|max:300',
+            'address' => 'required|min:10|max:255',
+            'image' => 'nullable|image|max:2048',
+            // 'visible' => 'nullable|in:1,0,true,false',
+        ]);
+
+        $data['slug'] = str()->slug($data['title']);
+        // $data['visible'] = isset($data['visible']);
+
+        // if (isset($data['image'])) {
+        //     $imagePath = Storage::put('uploads', $data['image']);
+        //     $data['image'] = $imagePath;
+        // }
+
+        $data['visible'] = $request->boolean('visible');
+
+        // dd($data);
+
+        $apartment->update($data);
+
+        // $apartment->services()->sync($data['services'] ?? []);
+
+
+        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->id]);
     }
 
     /**
@@ -107,6 +137,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index');
     }
 }
