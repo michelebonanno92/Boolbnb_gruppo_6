@@ -1,116 +1,127 @@
 @extends('layouts.app')
 
-@section('page-title' , 'Modifica il tuo progetto')
+@section('page-title' , 'Crea il tuo appartmanto')
 
 @section('main-content')
 <h1>
-  Modifica Progetto
+  Modifica Appartamento
 </h1>
 
-{{-- @if ($errors->any())
-  <div class="alert alert-danger my-4">
-    <ul>
-      @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-@endif --}}
-
-<form action="{{ route('admin.projects.update',['project' => $project->id])}}" method="POST" enctype="multipart/form-data">
-  @csrf
+<form action="{{ route('admin.apartments.update', ['apartment' => $apartment->id])}}" method="POST" enctype="multipart/form-data" >
+  {{-- enctype="multipart/form-data" serve per inviare i file in un form --}}
+    @csrf
   @method('PUT')
 
-  <div class="mb-3">
-    <label for="name" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="name"  name="name" value="{{ old('name', $project->name) }}" required maxlength="6">
-    @error('name')
-      <div class="alert alert-danger mt-2">
-        Errore Nome: {{ $message }}
-      </div>
-    @enderror
-  </div>
 
-  <div class="mb-3">
-      <label for="type_id" class="form-label">Tipologia di progetto</label>
-      <select id="type_id" name="type_id"  class="form-select" aria-label="Default select example">
-          <option
-          {{-- con questo lo selezioniamo solo se non era stato selezionato --}}
-          @if (old('type_id', $project->type_id) == null)
-              selected
-          @endif
-            value="">Seleziona una tipologia</option>
-          @foreach ($types as $type)
-            <option 
-            {{-- con questo se l'old è uguale ad un id allora facciamo la selezione con il selected --}}
-                @if (old('type_id', $project->type_id) == $type->id)
-                selected   
-                @endif
-                value="{{ $type->id }}">{{ $type->title }}</option>
-          @endforeach
-      </select>
-      @error('type_id')
+    {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
+    <div class="mb-3">
+      <label for="image" class="form-label">Immagine</label>
+      <input type="file" class="form-control" id="image"  name="image" ">
+      @error('image')
+      <div class="alert alert-danger mt-2">
+        Errore immagine: {{ $message }}
+      </div>
+       @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Titolo</label>
+      <input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title', $apartment->title)}}" required minlength="3" maxlength="255">
+      @error('title')
         <div class="alert alert-danger mt-2">
-          Errore Tipologia: {{ $message }}
+          Errore Titolo: {{ $message }}
         </div>
       @enderror
-  </div>
+    </div>
 
-  <div class="mb-3">
-    <label for="file" class="form-label">Immagine</label>
-    <input type="file" class="form-control" id="file"  name="file">
-
-    <div class="mt-4">
-    
-      @if ($project->file)
-      
-        <h5 class="mb-2">
-          Immagine attuale :
-        </h5>
-
-        <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" style="height: 100px" >
-
-        <div class="form-check mt-2">
-          <input class="form-check-input" type="checkbox" value="1" id="remove_img" name="remove_img">
-          <label class="form-check-label" for="remove_img">
-            Rimuovi immagine attuale
-          </label>
+    <div class="mb-3">
+      <label for="rooms" class="form-label">Numero stanze</label>
+      <input type="number" class="form-control" id="rooms"  name="rooms" placeholder="Inserisci il numero delle stanze..." value="{{old('rooms', $apartment->rooms)}}" required  min="1" max="20">
+      @error('rooms')
+        <div class="alert alert-danger mt-2">
+          Errore Stanze: {{ $message }}
         </div>
-
-      @endif
+      @enderror
     </div>
 
-    @error('file')
-    <div class="alert alert-danger mt-2">
-      Errore immagine: {{ $message }}
+    <div class="mb-3">
+      <label for="beds" class="form-label">Numero letti</label>
+      <input type="number" class="form-control" id="beds"  name="beds" placeholder="Inserisci il numero dei letti..." value="{{old('beds' , $apartment->beds)}}" required  min="1" max="33">
+      @error('beds')
+        <div class="alert alert-danger mt-2">
+          Errore Letti: {{ $message }}
+        </div>
+      @enderror
     </div>
-  @enderror
-  </div>
 
-  <div class="mb-3">
-    <div>
-      <label for="type_id" class="form-label">tecnologie</label>
+    <div class="mb-3">
+      <label for="toilets" class="form-label">Numero bagni</label>
+      <input type="number" class="form-control" id="toilets"  name="toilets" placeholder="Inserisci il numero dei bagni..." value="{{old('toilets' , $apartment->toilets)}}" required  min="1" max="10">
+      @error('toilets')
+        <div class="alert alert-danger mt-2">
+          Errore Bagni: {{ $message }}
+        </div>
+      @enderror
     </div>
-    @foreach ($technologies as $technology)
-      <div class="form-check form-check-inline">
-        <input 
-        {{-- se la collezione delle tecnologie associate al project contiene l'id della tecnologia che sto considerando allora aggiungo l'attributo checked--}}
-            @if ($project->technologies->contains($technology->id))
-                checked
-            @endif
-            class="form-check-input" 
-            type="checkbox" 
-            id="technology-{{ $technology->id }}" 
-            name="technologies[]" 
-            value="{{ $technology->id }}">
-        <label class="form-check-label" for="technology-{{ $technology->id }}">
-          {{ $technology->name }}
-        </label>
-      </div>
-    @endforeach
-</div>
+
+    <div class="mb-3">
+      <label for="square_meters" class="form-label">Numero metri quadri</label>
+      <input type="number" class="form-control" id="square_meters"  name="square_meters" placeholder="Inserisci il numero dei metri quadri..." value="{{old('square_meters' , $apartment->square_meters)}}" required  min="20" max="300">
+      @error('square_meters')
+        <div class="alert alert-danger mt-2">
+          Errore metri quadri: {{ $message }}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Indirizzo</label>
+      <input type="text" class="form-control" id="address"  name="address" placeholder="Inserisci l'indirizzo..." value="{{old('address', $apartment->address )}}" required minlength="10" maxlength="255">
+      @error('address')
+        <div class="alert alert-danger mt-2">
+          Errore Indirizzo: {{ $message }}
+        </div>
+      @enderror
+    </div>
+
+    
+    <div class="mb-3">
+      
+            <div class="form-check">
+                <input
+                    @if (old('visible', $apartment->visible == true ))  
+                        checked
+                    @endif
+                    class="form-check-input" 
+                    type="radio" 
+                    name="visible" 
+                    id="visible" 
+                    value="true">
+                    <label class="form-check-label" for="visible">
+                        Pubblica
+                    </label>
+            </div>
+            <div class="form-check">
+                <input 
+                    @if (old('visible', $apartment->visible == false ))  
+                        checked
+                    @endif
+                    class="form-check-input" 
+                    type="radio" 
+                    name="visible" 
+                    id="not-visible" 
+                    value="false">
+                    <label class="form-check-label" for="not-visible">
+                        Nascondi
+                    </label>
+            </div>
+            
+      </div>
+
+
   
   <button type="submit" class="btn btn-primary w-100">
-    + Modifica
+    + Aggiungi
    </button>
 </form>
 @endsection

@@ -16,7 +16,7 @@ return new class extends Migration
 
             //foreign key
             $table->unsignedBigInteger('apartment_id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onUpdate('cascade')->onDelete('cascade');
 
             $table->text('message_text');
             $table->date('sent_date');
