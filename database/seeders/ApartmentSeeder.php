@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Apartment;
 use App\Models\User;
 use App\Models\View;
+use App\Models\Service;
 
 
 class ApartmentSeeder extends Seeder

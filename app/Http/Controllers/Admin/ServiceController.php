@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Service;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+
+// MODEL
+use App\Models\Service;
 
 class ServiceController extends Controller
 {
