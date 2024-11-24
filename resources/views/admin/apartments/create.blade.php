@@ -83,21 +83,20 @@
     </div>
 
     <div class="mb-3">
-      <div>
-          <label class="form-label">Visibilità:</label>
-      </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="visible" name="true" value="1">
-            <label class="form-check-label" for="visible">
-                Visibile
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" id="visible" name="false" value="0">
-          <label class="form-check-label" for="visible">
-              Non Visibile
-          </label>
-      </div>
+      <div class="mb-3">
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="visible" id="visible" value="true">
+              <label class="form-check-label" for="visible">
+                Pubblica
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="visible" id="visible" value="false">
+              <label class="form-check-label" for="visible">
+                Nascondi
+              </label>
+          </div>
+      </div>
     </div>
 
   
