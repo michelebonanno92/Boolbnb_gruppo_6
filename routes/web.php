@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
-// use App\Http\Controllers\ApartmentController as ApartmentController;
+use App\Http\Controllers\ApartmentController as ApartmentController;
 
 
 
