@@ -65,6 +65,8 @@ class ApartmentController extends Controller
         //     $data['image'] = $imagePath;
         // }
 
+        $data['visible'] = $request->boolean('visible');
+
         // dd($data);
         $apartment = Apartment::create($data);
 
