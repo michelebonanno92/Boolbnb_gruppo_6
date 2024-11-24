@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
-// use App\Http\Controllers\ApartmentController as ApartmentController;
+
+use App\Http\Controllers\Admin\ServiceController;
+
+//importato secondo apartment controller per errore a riga 45. da rivedere
+use App\Http\Controllers\ApartmentController;
 
 
 
@@ -29,11 +33,16 @@ Route::prefix('admin')
     ->group(function () {
 
     Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
-
+    
+    //rotta controller apartments
     Route::resource('apartments', AdminApartmentController::class);
+
+    //rotta controller service
+    Route::resource('services', ServiceController::class);
 
 });
 
+//le 3 rotte sottostanti vengono segnalate come errore 
 Route::resource('homepage', ApartmentController::class);
 
 Route::post('/search-address', [ApartmentController::class, 'searchAddress'])->name('search.address');
