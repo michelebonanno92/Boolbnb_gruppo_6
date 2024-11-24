@@ -33,8 +33,8 @@
             const map = tt.map({
                 key: apiKey,
                 container: 'map', // ID del contenitore HTML
-                center: [4.908066, 52.376372 ], // Coordinate iniziali (Amsterdam, ad esempio)
-                zoom: 22
+                center: [11.3492311, 44.4944456 ], // Coordinate iniziali (Amsterdam, ad esempio)
+                zoom: 11
             });
 
             map.addControl(new tt.NavigationControl()); // Controlli di navigazione (zoom, rotazione, ecc.)

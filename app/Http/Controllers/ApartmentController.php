@@ -38,13 +38,16 @@ class ApartmentController extends Controller
 
         foreach ($apartments as $apartment) {
             $points[] = [
-                'latitude' => $apartment->latitude,
-                'longitude' => $apartment->longitude,
+                'lat' => $apartment->latitude,
+                'lon' => $apartment->longitude,
                 'title' => $apartment->title,
             ];
             
         };
 
+        
+        return response()->json($points);
+        
         // dd($points);
 
         // Dati di esempio (simula dati reali)
@@ -53,9 +56,6 @@ class ApartmentController extends Controller
         //     ['lat' => 52.376447, 'lon' => 4.908168, 'name' => "Caffetteria Centrale"],
         //     ['lat' => 52.378612, 'lon' => 4.900254, 'name' => "Parco Locale"]
         // ];
-
-        return response()->json($points);
-
         
     }
 
