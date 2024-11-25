@@ -34,7 +34,7 @@ class TomTomService
                         ];
                     }
                     else {
-                        return ['error' => 'Unable to get coordinates from the address.'];
+                        return ['error' => 'Impossibile ottenere le coordinate per questo indirizzo.'];
                     }
                 }
             } catch (\Exception $e) {
