@@ -8,6 +8,7 @@ use App\Services\TomTomService;
 
 //Helpers
 use Illuminate\Support\Facades\Storage;
+//  per spostare i file da $data allo storage 
 use Illuminate\Http\Request;
 
 // MODELS
@@ -57,7 +58,17 @@ class ApartmentController extends Controller
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
             // 'visible' => 'nullable|in:1,0,true,false',
+        ],
+        [
+            'image.max' => 'immagine troppo grande'
         ]);
+
+        if (isset($data['image'])) {
+            $imagePath = Storage::put('uploads', $data['image']);
+           
+             $data['image'] = $imagePath;
+        }
+   
 
         $coordinates = app(\App\Services\TomTomService::class)->searchAddress($data['address']);
 
@@ -116,20 +127,33 @@ class ApartmentController extends Controller
             'square_meters' => 'required|min:1|max:300',
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
+            // 'remove_img' => 'nullable'
+
             // 'visible' => 'nullable|in:1,0,true,false',
         ]);
 
         $data['slug'] = str()->slug($data['title']);
         // $data['visible'] = isset($data['visible']);
 
-        // if (isset($data['image'])) {
-        //     $imagePath = Storage::put('uploads', $data['image']);
-        //     $data['image'] = $imagePath;
-        // }
-
         $data['visible'] = $request->boolean('visible');
 
-        // dd($data);
+
+        if (isset($data['image'])) {
+            if ($apartment->image) {
+                // elimina image(immagine) precedente
+                Storage::delete($apartment->image);
+                $apartment->image = null;
+            }
+
+            // altrimenti se è null aggiornalo e salvalo
+            $imagePath = Storage::put('uploads', $data['image']);
+            $data['image'] = $imagePath;
+        }
+        // elseif (isset($data['remove_img']) && $apartment->image) {
+        //     // elimina image precedente
+        //     Storage::delete($apartment->image);
+        //     $apartment->image = null;
+        // }
 
         $apartment->update($data);
 
@@ -145,6 +169,11 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
+
+        // prima di cancellare direttamente l'appartamento, se è presente l'immagine allora la eliminiamo 
+        if ($apartment->image) {
+            Storage::delete($apartment->image);
+        }
 
         return redirect()->route('admin.apartments.index');
     }

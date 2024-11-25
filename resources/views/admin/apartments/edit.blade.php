@@ -15,8 +15,32 @@
 
     {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
     <div class="mb-3">
-      <label for="image" class="form-label">Immagine</label>
-      <input type="file" class="form-control" id="image"  name="image" ">
+      <label for="image" class="form-label">Modifica l'immagine</label>
+      <input type="file" class="form-control" id="image"  name="image" >
+  
+      <div class="mt-4">
+
+        @if($apartment->image)
+
+          <div class="mb-2">
+            Immagine attuale :
+          </div>
+
+          <img src="{{ asset('/storage/'.$apartment->image) }}" alt="{{ $apartment->title }}" style="height: 100px" >
+
+          
+          {{-- <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="1" id="remove_img" name="remove_img">
+            <label class="form-check-label" for="remove_img">
+              Rimuovi immagine attuale
+            </label>
+          </div> --}}
+
+      
+        @endif
+      
+      </div>
+
       @error('image')
       <div class="alert alert-danger mt-2">
         Errore immagine: {{ $message }}

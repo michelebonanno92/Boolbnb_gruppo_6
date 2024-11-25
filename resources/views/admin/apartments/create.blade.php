@@ -13,7 +13,7 @@
 
     {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
     <div class="mb-3">
-      <label for="image" class="form-label">Immagine</label>
+      <label for="image" class="form-label">Inserisci un immagine</label>
       <input type="file" class="form-control" id="image"  name="image" >
       @error('image')
       <div class="alert alert-danger mt-2">

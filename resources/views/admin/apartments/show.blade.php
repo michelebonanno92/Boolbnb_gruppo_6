@@ -8,6 +8,12 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card py-2 px-4">
+					{{-- <img src="{{ $apartment->image }}" alt="Immagine {{ $apartment->title }}"> --}}
+					<div>
+						@if ($apartment->image)
+						  <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+						@endif
+					</div>
 					<h4>
 						{{ $apartment->title }}
 					</h4>
