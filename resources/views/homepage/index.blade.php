@@ -9,10 +9,10 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-primary">
-                        Welcome!
+                        Tutti gli appartamenti?
                     </h1>
                     <br>
-                    La welcome page è una pagina pubblica (NON protetta)
+                    
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <ul>
             @foreach ($apartments as $apartment)
             <li>
-                {{ $apartment->title }}
+                {{ $apartment->title }} -> <a href="{{ route('homepage.show', $apartment->id) }}">Dettagli</a>
             </li> 
             @endforeach
         </ul>

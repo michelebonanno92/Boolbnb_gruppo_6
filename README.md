@@ -78,3 +78,4 @@ ricerca e homepage lato guest
 
 Per tutti: 
 modificare in .env -> APP_NAME=BoolBnB
+

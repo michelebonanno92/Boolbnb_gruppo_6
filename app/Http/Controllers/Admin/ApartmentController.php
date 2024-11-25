@@ -29,7 +29,11 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        //prendo l'utente autenticato
+        $user = auth()->user();
+        
+        //prendo solo gli appartamenti con user_id corrispondente
+        $apartments = Apartment::where('user_id', $user->id)->get();
 
         return view('admin.apartments.index', compact('apartments'));
     }
@@ -79,6 +83,9 @@ class ApartmentController extends Controller
         }
 
         $data['visible'] = $request->boolean('visible');
+
+        //salvo l'id dell'user che sta inserendo l'appartamento
+        $data['user_id'] = auth()->id();
 
         
         $apartment = Apartment::create($data);

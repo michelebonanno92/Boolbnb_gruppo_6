@@ -10,7 +10,7 @@
                         BoolBnb
                     </h1>
                     <br>
-                    <a href="{{route('admin.apartments.index') }}" class="btn btn-primary">
+                    <a href="{{route('homepage.index') }}" class="btn btn-primary">
                         Tutti gli appartamenti
                     </a>
                 </div>
