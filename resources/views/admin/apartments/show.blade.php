@@ -24,6 +24,9 @@
 						<li>
 							Bagni: {{ $apartment->toilets }}
 						</li>
+						<li>
+							Indirizzo: {{ $apartment->address }}
+						</li>
 					</ul>
 
 					<div>

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-6 col-md-4">
                     <div>
-                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success mb-4">Nuovo appartamento</a>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4">Nuovo appartamento</a>
                          <!-- link ai servizi -->
                          <a href="{{ route('admin.services.index') }}" class="btn btn-primary my-4">Elenco servizi</a>
                     </div>
