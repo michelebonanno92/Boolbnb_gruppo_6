@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-primary">
-                        Welcome!
+                        BoolBnb
                     </h1>
                     <br>
                     <a href="{{route('admin.apartments.index') }}" class="btn btn-primary">
