@@ -70,7 +70,13 @@ class ApartmentController extends Controller
         $data['longitude'] = $coordinates['lon'];
 
         $data['slug'] = str()->slug($data['title']);
-        
+        //verifico l'unicità dello slug
+        $originalSlug = $data['slug'];
+        $counter = 1;
+        while (Apartment::where('slug', $data['slug'])->exists()) {
+            $data['slug'] = "{$originalSlug}-{$counter}";
+            $counter++;
+        }
 
         $data['visible'] = $request->boolean('visible');
 
@@ -120,6 +126,18 @@ class ApartmentController extends Controller
         ]);
 
         $data['slug'] = str()->slug($data['title']);
+        // Verifica unicità dello slug se il titolo è stato modificato
+        if ($apartment->title !== $data['title']) {
+            $originalSlug = $data['slug'];
+            $counter = 1;
+
+            while (Apartment::where('slug', $data['slug'])->exists()) {
+                $data['slug'] = "{$originalSlug}-{$counter}";
+                $counter++;
+            }
+        }
+
+
         // $data['visible'] = isset($data['visible']);
 
         // if (isset($data['image'])) {
