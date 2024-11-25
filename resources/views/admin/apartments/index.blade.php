@@ -28,6 +28,11 @@
                 
                         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
                             <div class="card my-card py-1 px-3">
+                                <div>
+                                    @if ($apartment->image)
+                                      <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+                                    @endif
+                                </div>
                                 <h4>
                                     {{ $apartment->title }}
                                 </h4>

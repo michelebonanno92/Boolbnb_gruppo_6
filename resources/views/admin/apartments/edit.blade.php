@@ -16,7 +16,16 @@
     {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
     <div class="mb-3">
       <label for="image" class="form-label">Immagine</label>
-      <input type="file" class="form-control" id="image"  name="image" ">
+      <input type="file" class="form-control" id="image"  name="image">
+      @if($apartment->image)
+
+          <div class="mb-2">
+            Immagine attuale :
+          </div>
+
+          <img src="{{ asset('/storage/'.$apartment->image) }}" alt="{{ $apartment->title }}" style="height: 100px">
+      
+      @endif
       @error('image')
       <div class="alert alert-danger mt-2">
         Errore immagine: {{ $message }}

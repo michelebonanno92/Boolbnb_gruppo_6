@@ -82,6 +82,13 @@ class ApartmentController extends Controller
             $counter++;
         }
 
+        //gestione immagini
+        if (isset($data['image'])) {
+            $imagePath = Storage::put('uploads', $data['image']);
+           
+            $data['image'] = $imagePath;
+        }
+
         $data['visible'] = $request->boolean('visible');
 
         //salvo l'id dell'user che sta inserendo l'appartamento
@@ -144,6 +151,19 @@ class ApartmentController extends Controller
             }
         }
 
+        //immagini
+        if (isset($data['image'])) {
+            if ($apartment->image) {
+                // elimina image(immagine) precedente
+                Storage::delete($apartment->image);
+                $apartment->image = null;
+            }
+
+            // altrimenti se è null aggiornalo e salvalo
+            $imagePath = Storage::put('uploads', $data['image']);
+            $data['image'] = $imagePath;
+        }
+
 
         // $data['visible'] = isset($data['visible']);
 
@@ -169,6 +189,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        if ($apartment->image) {
+            Storage::delete($apartment->image);
+        }
+        
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');
