@@ -53,7 +53,7 @@ class ApartmentController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
-            // 'description' => 'required|min:3|max:4096',
+            'description' => 'required|min:20|max:4096',
             'rooms' => 'required|min:1|max:20',
             'beds' => 'required|min:1|max:33',
             'toilets' => 'required|min:1|max:10',

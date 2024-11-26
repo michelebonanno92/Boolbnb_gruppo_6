@@ -14,9 +14,7 @@
             <div class="row">
                 <div class="col-6 col-md-4">
                     <div>
-                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4">Nuovo appartamento</a>
-                         <!-- link ai servizi -->
-                         <a href="{{ route('admin.services.index') }}" class="btn btn-primary my-4">Elenco servizi</a>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4 w-100">Nuovo appartamento</a>
                     </div>
                 </div>
             </div>
@@ -33,33 +31,27 @@
                                       <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
                                     @endif
                                 </div>
-                                <h4>
+                                <h4 class="mt-4">
                                     {{ $apartment->title }}
                                 </h4>
                                 <p>
                                     {{ $apartment->description }}
                                 </p>
-                                <ul>
-                                    <li>
-                                        Stanze: {{ $apartment->rooms }}
-                                    </li>
-                                    <li>
-                                        Letti: {{ $apartment->beds }}
-                                    </li>
-                                    <li>
-                                        Bagni: {{ $apartment->toilets }}
-                                    </li>
-                                </ul>
-                                <div>
+                                <li>
+                                    Stanze: {{ $apartment->rooms }}
+                                </li>
+                                <li>
+                                    Letti: {{ $apartment->beds }}
+                                </li>
+                                <li>
+                                    Bagni: {{ $apartment->toilets }}
+                                </li>
+                               
+                                <div class="mt-4">
                                     Servizi:
                                     <ul>
-                                        <li>
-                                            placeholder servizi
-                                        </li>
+                                        lista servizi 
                                     </ul>
-                                </div>
-                                <div class="card-image">
-                                    placeholder immagine
                                 </div>
 
                                 <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>

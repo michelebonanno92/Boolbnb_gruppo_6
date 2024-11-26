@@ -12,7 +12,13 @@
                 </ul>
             </div>
         @endif
-
+        <div class="row mb-2">
+            <div class="col-12 col-md-6 col-lg-2">
+                <label for="name">
+                    <span class="text-danger">*</span>Campi obbligatori
+                </label>
+            </div>
+        </div>
         <!-- Name -->
         <div class="row mb-2">
             <div class="col-12 col-md-6 col-lg-1">

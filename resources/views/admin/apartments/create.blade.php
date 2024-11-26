@@ -3,9 +3,17 @@
 @section('page-title' , 'Crea il tuo appartmanto')
 
 @section('main-content')
+
+
 <h1>
   Crea Appartamento
 </h1>
+
+<div class="mb-3 d-flex justify-content-end">
+  <label for="name">
+      <span class="text-danger">*</span>Campi obbligatori
+  </label>
+</div>
 
 <form action="{{ route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data" >
   {{-- enctype="multipart/form-data" serve per inviare i file in un form --}}
@@ -13,7 +21,7 @@
 
     {{-- FARE COLLEGAMENTO ALLO STORAGE LINK  --}}
     <div class="mb-3">
-      <label for="image" class="form-label">Immagine</label>
+      <label for="image" class="form-label">Immagine
       <input type="file" class="form-control" id="image"  name="image" >
       @error('image')
       <div class="alert alert-danger mt-2">
@@ -23,7 +31,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="title" class="form-label">Titolo</label>
+      <label for="title" class="form-label">Titolo<span class="text-danger">*</span></label></label>
       <input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title')}}" required minlength="3" maxlength="255">
       @error('title')
         <div class="alert alert-danger mt-2">
@@ -33,7 +41,17 @@
     </div>
 
     <div class="mb-3">
-      <label for="rooms" class="form-label">Numero stanze</label>
+      <label for="description" class="form-label">Descrizione<span class="text-danger">*</span></label></label>
+      <textarea  class="form-control" id="description"  name="description" placeholder="Inserisci una breve descrizione dell'appartamento..."  value="{{old('description')}}" required minlength="20" maxlength="4096" cols="10" rows="3"></textarea>
+      @error('description')
+        <div class="alert alert-danger mt-2">
+          Errore Titolo: {{ $message }}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="rooms" class="form-label">Numero stanze<span class="text-danger">*</span></label>
       <input type="number" class="form-control" id="rooms"  name="rooms" placeholder="Inserisci il numero delle stanze..." value="{{old('rooms')}}" required  min="1" max="20">
       @error('rooms')
         <div class="alert alert-danger mt-2">
@@ -43,7 +61,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="beds" class="form-label">Numero letti</label>
+      <label for="beds" class="form-label">Numero letti<span class="text-danger">*</span></label>
       <input type="number" class="form-control" id="beds"  name="beds" placeholder="Inserisci il numero dei letti..." value="{{old('beds')}}" required  min="1" max="33">
       @error('beds')
         <div class="alert alert-danger mt-2">
@@ -53,7 +71,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="toilets" class="form-label">Numero bagni</label>
+      <label for="toilets" class="form-label">Numero bagni<span class="text-danger">*</span></label>
       <input type="number" class="form-control" id="toilets"  name="toilets" placeholder="Inserisci il numero dei bagni..." value="{{old('toilets')}}" required  min="1" max="10">
       @error('toilets')
         <div class="alert alert-danger mt-2">
@@ -63,7 +81,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="square_meters" class="form-label">Numero metri quadri</label>
+      <label for="square_meters" class="form-label">Numero metri quadri<span class="text-danger">*</span></label>
       <input type="number" class="form-control" id="square_meters"  name="square_meters" placeholder="Inserisci il numero dei metri quadri..." value="{{old('square_meters')}}" required  min="20" max="300">
       @error('square_meters')
         <div class="alert alert-danger mt-2">
@@ -73,7 +91,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="address" class="form-label">Indirizzo</label>
+      <label for="address" class="form-label">Indirizzo<span class="text-danger">*</span></label>
       <input type="text" class="form-control" id="address"  name="address" placeholder="Inserisci l'indirizzo..." value="{{old('address')}}" required minlength="10" maxlength="255">
       @error('address')
         <div class="alert alert-danger mt-2">
