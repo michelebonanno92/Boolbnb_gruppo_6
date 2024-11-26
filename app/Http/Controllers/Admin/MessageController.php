@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+//models
+use App\Models\Message;
+
 
 class MessageController extends Controller
 {

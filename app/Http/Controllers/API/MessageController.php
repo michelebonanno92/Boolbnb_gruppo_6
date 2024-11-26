@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class MessageController extends Controller
+{
+    public function newMessage(Request $request)
+    {
+        return response()->json($request->all());
+    }
+}
