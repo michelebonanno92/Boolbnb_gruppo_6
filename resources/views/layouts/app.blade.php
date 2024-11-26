@@ -14,7 +14,7 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Il mio Profilo</a>
+                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -24,7 +24,7 @@
                                 <a class="nav-link" href="{{ route('admin.apartments.index') }}">Appartamenti</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link 3</a>
+                                <a class="nav-link" href="#">Sponsorizza?</a>
                             </li>
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">
