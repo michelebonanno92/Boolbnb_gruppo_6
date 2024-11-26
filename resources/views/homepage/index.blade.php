@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-primary">
-                        Tutti gli appartamenti?
+                        Tutti gli appartamenti
                     </h1>
                     <br>
                     
@@ -19,9 +19,11 @@
 
         <ul>
             @foreach ($apartments as $apartment)
-            <li>
-                {{ $apartment->title }} -> <a href="{{ route('homepage.show', $apartment->id) }}">Dettagli</a>
-            </li> 
+                @if ($apartment->visible)
+                    <li>
+                        {{ $apartment->title }} -> <a href="{{ route('homepage.show', $apartment->id) }}" >Dettagli</a>
+                    </li> 
+                @endif
             @endforeach
         </ul>
     </div>

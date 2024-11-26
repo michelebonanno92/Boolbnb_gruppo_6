@@ -15,15 +15,7 @@
 						{{ $apartment->description }}
 					</p>
 					<ul>
-						<li>
-							Stanze: {{ $apartment->rooms }}
-						</li>
-						<li>
-							Letti: {{ $apartment->beds }}
-						</li>
-						<li>
-							Bagni: {{ $apartment->toilets }}
-						</li>
+			
 						<li>
 							Indirizzo: {{ $apartment->address }}
 						</li>
@@ -33,7 +25,13 @@
 						Servizi:
 						<ul>
 							<li>
-								placeholder servizi
+								Stanze: {{ $apartment->rooms }}
+							</li>
+							<li>
+								Letti: {{ $apartment->beds }}
+							</li>
+							<li>
+								Bagni: {{ $apartment->toilets }}
 							</li>
 						</ul>
 					</div>

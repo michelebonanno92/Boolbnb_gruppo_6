@@ -13,9 +13,12 @@
 						  <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
 						@endif
 					</div>
-					<h4>
+					<h4 class="mt-4">
 						{{ $apartment->title }}
 					</h4>
+					<p>
+						Indirizzo: {{ $apartment->address }}
+					</p>
 					<p>
 						{{ $apartment->description }}
 					</p>
@@ -29,26 +32,18 @@
 						<li>
 							Bagni: {{ $apartment->toilets }}
 						</li>
-						<li>
-							Indirizzo: {{ $apartment->address }}
-						</li>
 					</ul>
 
 					<div>
 						Servizi:
-						<ul>
+						@foreach ($apartment->services as $service)
 							<li>
-								placeholder servizi
+								{{ $service->service_name }}
 							</li>
-						</ul>
+                        @endforeach
 					</div>
-
-					<div class="card-image">
-						placeholder immagine
-					</div>
-
 					<div>
-						<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}">Modifica</a>
+						<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-warning mb-4">Modifica</a>
 					</div>
 					<form 
 						onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"

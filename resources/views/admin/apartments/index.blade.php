@@ -14,9 +14,7 @@
             <div class="row">
                 <div class="col-6 col-md-4">
                     <div>
-                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4">Nuovo appartamento</a>
-                         <!-- link ai servizi -->
-                         <a href="{{ route('admin.services.index') }}" class="btn btn-primary my-4">Elenco servizi</a>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4 w-100">Nuovo appartamento</a>
                     </div>
                 </div>
             </div>
@@ -26,46 +24,52 @@
             <div class="row">
                 @forelse ($apartments as $apartment)
                 
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                            <div class="card my-card py-1 px-3">
-                                <div>
-                                    @if ($apartment->image)
-                                      <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
-                                    @endif
-                                </div>
-                                <h4>
-                                    {{ $apartment->title }}
-                                </h4>
-                                <p>
-                                    {{ $apartment->description }}
-                                </p>
-                                <ul>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                    <div class="card my-card py-1 px-3">
+                        <div>
+                            @if ($apartment->image)
+                            <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+                            @endif
+                      </div>
+                        <h4 class="mt-4">
+                            {{ $apartment->title }}
+                        </h4>
+                        <p>
+                            {{ $apartment->description }}
+                        </p>
+                        <li>
+                            Stanze: {{ $apartment->rooms }}
+                        </li>
+                        <li>
+                            Letti: {{ $apartment->beds }}
+                        </li>
+                        <li>
+                            Bagni: {{ $apartment->toilets }}
+                        </li>
+                    
+                        <div class="mt-4">
+                            Servizi:
+                            <ul>
+                                @foreach ($apartment->services as $service)
                                     <li>
-                                        Stanze: {{ $apartment->rooms }}
+                                        {{ $service->service_name }}
                                     </li>
-                                    <li>
-                                        Letti: {{ $apartment->beds }}
-                                    </li>
-                                    <li>
-                                        Bagni: {{ $apartment->toilets }}
-                                    </li>
-                                </ul>
-                                <div>
-                                    Servizi:
-                                    <ul>
-                                        <li>
-                                            placeholder servizi
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-image">
-                                    placeholder immagine
-                                </div>
-
-                                <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
-
-                            </div>
+                                @endforeach
+                            </ul>
                         </div>
+                        <div>
+                            @if ($apartment->visible)
+                                Appartamento pubblicato
+
+                            @else
+                                Appartamento non pubblicato
+                            @endif
+                        </div>
+
+                        <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
+
+                    </div>
+                </div>
             
                 @empty
                     <h2>

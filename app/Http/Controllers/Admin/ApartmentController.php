@@ -43,7 +43,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.apartments.create');
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -53,13 +54,14 @@ class ApartmentController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
-            // 'description' => 'required|min:3|max:4096',
+            'description' => 'required|min:20|max:4096',
             'rooms' => 'required|min:1|max:20',
             'beds' => 'required|min:1|max:33',
             'toilets' => 'required|min:1|max:10',
             'square_meters' => 'required|min:1|max:300',
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
+            'services' => 'nullable|array'
             // 'visible' => 'nullable|in:1,0,true,false',
         ]);
 
@@ -94,8 +96,12 @@ class ApartmentController extends Controller
         //salvo l'id dell'user che sta inserendo l'appartamento
         $data['user_id'] = auth()->id();
 
+        // dd($data);
         
         $apartment = Apartment::create($data);
+
+        $apartment->services()->sync($data['services'] ?? []);
+
 
        
 
@@ -118,7 +124,9 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('admin.apartments.edit', compact('apartment'));
+        $services = Service::all();
+
+        return view('admin.apartments.edit', compact('apartment', 'services'));
 
     }
 
@@ -136,6 +144,8 @@ class ApartmentController extends Controller
             'square_meters' => 'required|min:1|max:300',
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
+            'services' => 'nullable|array'
+
             // 'visible' => 'nullable|in:1,0,true,false',
         ]);
 
@@ -177,6 +187,9 @@ class ApartmentController extends Controller
         // dd($data);
 
         $apartment->update($data);
+
+        $apartment->services()->sync($data['services'] ?? []);
+
 
         // $apartment->services()->sync($data['services'] ?? []);
 
