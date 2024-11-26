@@ -22,21 +22,25 @@
 					<p>
 						{{ $apartment->description }}
 					</p>
-					
+					<ul>
+						<li>
+							Stanze: {{ $apartment->rooms }}
+						</li>
+						<li>
+							Letti: {{ $apartment->beds }}
+						</li>
+						<li>
+							Bagni: {{ $apartment->toilets }}
+						</li>
+					</ul>
 
 					<div>
 						Servizi:
-						<ul>
+						@foreach ($apartment->services as $service)
 							<li>
-								Stanze: {{ $apartment->rooms }}
+								{{ $service->service_name }}
 							</li>
-							<li>
-								Letti: {{ $apartment->beds }}
-							</li>
-							<li>
-								Bagni: {{ $apartment->toilets }}
-							</li>
-						</ul>
+                        @endforeach
 					</div>
 					<div>
 						<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-warning mb-4">Modifica</a>

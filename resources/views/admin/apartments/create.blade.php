@@ -99,6 +99,19 @@
         </div>
       @enderror
     </div>
+    {{-- servizi --}}
+    <div class="mb-3">
+      <label for="service" class="form-label">Servizi</label>
+      @foreach ($services as $service)
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="service-{{ $service->id }}" name="services[]" value="{{ $service->id }}">
+			<label class="form-check-label" for="service-{{ $service->id }}">
+				{{ $service->service_name }}
+			</label>
+		</div>
+      @endforeach
+      
+    </div>
 
     <div class="mb-3">
       <div class="mb-3">

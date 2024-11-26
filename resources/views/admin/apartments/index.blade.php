@@ -24,40 +24,52 @@
             <div class="row">
                 @forelse ($apartments as $apartment)
                 
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                            <div class="card my-card py-1 px-3">
-                                <div>
-                                    @if ($apartment->image)
-                                      <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
-                                    @endif
-                                </div>
-                                <h4 class="mt-4">
-                                    {{ $apartment->title }}
-                                </h4>
-                                <p>
-                                    {{ $apartment->description }}
-                                </p>
-                                <li>
-                                    Stanze: {{ $apartment->rooms }}
-                                </li>
-                                <li>
-                                    Letti: {{ $apartment->beds }}
-                                </li>
-                                <li>
-                                    Bagni: {{ $apartment->toilets }}
-                                </li>
-                               
-                                <div class="mt-4">
-                                    Servizi:
-                                    <ul>
-                                        lista servizi 
-                                    </ul>
-                                </div>
-
-                                <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
-
-                            </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                    <div class="card my-card py-1 px-3">
+                        <div>
+                            @if ($apartment->image)
+                            <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+                            @endif
+                      </div>
+                        <h4 class="mt-4">
+                            {{ $apartment->title }}
+                        </h4>
+                        <p>
+                            {{ $apartment->description }}
+                        </p>
+                        <li>
+                            Stanze: {{ $apartment->rooms }}
+                        </li>
+                        <li>
+                            Letti: {{ $apartment->beds }}
+                        </li>
+                        <li>
+                            Bagni: {{ $apartment->toilets }}
+                        </li>
+                    
+                        <div class="mt-4">
+                            Servizi:
+                            <ul>
+                                @foreach ($apartment->services as $service)
+                                    <li>
+                                        {{ $service->service_name }}
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
+                        <div>
+                            @if ($apartment->visible)
+                                Appartamento pubblicato
+
+                            @else
+                                Appartamento non pubblicato
+                            @endif
+                        </div>
+
+                        <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
+
+                    </div>
+                </div>
             
                 @empty
                     <h2>
