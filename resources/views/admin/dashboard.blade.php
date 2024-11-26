@@ -29,10 +29,13 @@
                 <div class="card p-3">
                     placeholder visualizazioni
                 </div>
+                <div>
+                    Appartamento casa bella:...
+                </div>
             </div>
             <div class="col">
                 <div class="card p-3">
-                    placeholder messaggi
+                    placeholder messaggi <a href="#">Vedi tutti i messaggi...</a>
                 </div>
             </div>
         </div>
