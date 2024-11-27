@@ -4,25 +4,37 @@
 
 @section('main-content')
 
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="card py-2 px-4">
+	<div class="container  text-center">
+		<div class="row ">
+			<div class="col-12 col-md-6 offset-md-3">
+				<div class="card p-4">
 					<div>
 						@if ($apartment->image)
-						  <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+						  <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded">
 						@endif
 					</div>
 					<h4 class="mt-4">
 						{{ $apartment->title }}
 					</h4>
+					<div class="mb-3">
+						@if ($apartment->visible)
+							<div class="badge text-bg-success">
+								Pubblicato
+							</div>
+
+						@else
+							<div class="badge text-bg-warning">
+								Non pubblicato
+							</div>
+						@endif
+					</div>
 					<p>
-						Indirizzo: {{ $apartment->address }}
+						{{ $apartment->address }}
 					</p>
 					<p>
 						{{ $apartment->description }}
 					</p>
-					<ul>
+					<ul class="text-start">
 						<li>
 							Stanze: {{ $apartment->rooms }}
 						</li>
@@ -34,28 +46,40 @@
 						</li>
 					</ul>
 
-					<div>
-						Servizi:
-						@foreach ($apartment->services as $service)
-							<li>
-								{{ $service->service_name }}
-							</li>
-                        @endforeach
+					<div class="text-start">
+						<span class="mb-2">Servizi:</span>
+						<ul>
+							@foreach ($apartment->services as $service)
+								<li  class="badge my-services text-bg-primary rounded-pill">
+									{{ $service->service_name }}
+								</li>
+                        	@endforeach
+						</ul>
 					</div>
-					<div>
-						<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-warning mb-4">Modifica</a>
+
+					<div class="row">
+						<div class="col-auto d-flex">
+							<div class="d-inline-block me-3">
+								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-success mb-4"><- Indietro</a>
+							</div>
+
+							<div class="d-inline-block me-3">
+								<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-warning mb-4">Modifica</a>
+							</div>
+							
+							<form 
+								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
+								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
+								method="POST" 
+								class="d-inline-block">
+								@csrf
+								@method('DELETE')
+								<button type="submit" class="btn btn-danger">
+									Elimina
+								</button>
+							</form>
+						</div>
 					</div>
-					<form 
-						onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
-						action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
-						method="POST" 
-						class="d-inline-block">
-						@csrf
-						@method('DELETE')
-						<button type="submit" class="btn btn-danger">
-							Elimina
-						</button>
-					</form>
 				</div>
 			</div>
 		</div>

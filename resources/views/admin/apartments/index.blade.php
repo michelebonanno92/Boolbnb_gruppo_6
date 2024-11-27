@@ -25,33 +25,31 @@
                 @forelse ($apartments as $apartment)
                 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <div class="card my-card py-1 px-3">
-                        <div>
+                    <div class="card my-card p-3">
+                        <div class="text-center">
                             @if ($apartment->image)
-                            <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" style="height: 100px">
+                            <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="my-img rounded">
                             @endif
                       </div>
-                        <h4 class="mt-4">
+                        <h4 class="mb-2">
                             {{ $apartment->title }}
                         </h4>
-                        <p>
-                            {{ $apartment->description }}
-                        </p>
-                        <li>
-                            Stanze: {{ $apartment->rooms }}
-                        </li>
-                        <li>
-                            Letti: {{ $apartment->beds }}
-                        </li>
-                        <li>
-                            Bagni: {{ $apartment->toilets }}
-                        </li>
+                        <ul class="my-list">
+                            <li>
+                                Stanze: <span class="fw-bold">{{ $apartment->rooms }}</span>
+                            </li>
+                            <li>
+                                Letti: <span class="fw-bold">{{ $apartment->beds }}</span>
+                            </li>
+                            <li>
+                                Bagni: <span class="fw-bold">{{ $apartment->toilets }}</span>
+                            </li>
+                        </ul>
                     
                         <div class="mt-4">
-                            Servizi:
-                            <ul>
+                            <ul class="service-list">
                                 @foreach ($apartment->services as $service)
-                                    <li>
+                                    <li class="badge text-bg-primary my-services rounded-pill">
                                         {{ $service->service_name }}
                                     </li>
                                 @endforeach
@@ -59,10 +57,14 @@
                         </div>
                         <div>
                             @if ($apartment->visible)
-                                Appartamento pubblicato
+                                <div class="badge text-bg-success">
+                                    Pubblicato
+                                </div>
 
                             @else
-                                Appartamento non pubblicato
+                                <div class="badge text-bg-warning">
+                                    Non pubblicato
+                                </div>
                             @endif
                         </div>
 
@@ -73,7 +75,7 @@
             
                 @empty
                     <h2>
-                        Non hai ancora inserito appartamenti.
+                        Inserisci il tuo primo appartamento!
 
                     </h2>
                 @endforelse
