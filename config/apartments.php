@@ -11,7 +11,7 @@ return [
         'address' => "Via Giovanni Bettolo, 4, Roma",
         'latitude' => "41.91135390127905",
         'longitude' => "12.455312507846944",
-        'image' => "uploads/2X4gRGa71uukDfzo6IE7QtLE3XG1vSU8apo5z9bC.jpg",
+        'image' =>"uploads/2X4gRGa71uukDfzo6IE7QtLE3XG1vSU8apo5z9bC.jpg",
         'visible' => true,
         'messages' => null,
     ],
