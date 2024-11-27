@@ -27,6 +27,23 @@ class Apartment extends Model
         'messages'
     ];
 
+    protected $appends = [
+        'full_image_url'
+    ];
+
+    // Costum Attributes
+
+    public function getFullImageUrlAttribute()
+    {
+        $fullImageUrl = null;
+
+        if ($this->image) {
+            $fullImageUrl = asset('storage/'.$this->image);
+        }
+
+        return $fullImageUrl;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
