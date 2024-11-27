@@ -96,8 +96,19 @@
 								</div>
 							@enderror
 						</div>
+
+						<div>
+							<input
+								type="text"
+								id="search-input"
+								placeholder="Cerca un indirizzo..."
+								class="search-bar"
+								oninput="fetchSuggestions()"
+							/>
+							<ul id="suggestions-list" class="suggestions-list"></ul>
+						</div>
 				
-						<div class="mb-3">
+						{{-- <div class="mb-3">
 							<label for="address" class="form-label fw-bold">Indirizzo<span class="text-danger">*</span></label>
 							<input type="text" class="form-control" id="address"  name="address" placeholder="Inserisci l'indirizzo..." value="{{old('address')}}" required minlength="10" maxlength="255">
 							@error('address')
@@ -105,7 +116,9 @@
 									Errore Indirizzo: {{ $message }}
 								</div>
 							@enderror
-						</div>
+						</div> --}}
+
+
 						{{-- servizi --}}
 						<div class="card my-services p-4 mb-3">
 							<div>
@@ -148,5 +161,41 @@
 		</div>
 	</div>
 </div>
+<script>
+	const input = document.getElementById('search-input');
+	const suggestionsList = document.getElementById('suggestions-list');
+
+	function fetchSuggestions() {
+		const query = input.value;
+
+		if (query.length < 3) {
+			suggestionsList.innerHTML = '';
+			return;
+		}
+
+		axios.get(`/search`, { params: { query } })
+			.then(response => {
+				const suggestions = response.data;
+
+				suggestionsList.innerHTML = '';
+
+				suggestions.forEach(result => {
+					const li = document.createElement('li');
+					li.textContent = result.address.freeformAddress;
+					li.onclick = () => selectSuggestion(result);
+					suggestionsList.appendChild(li);
+				});
+			})
+			.catch(error => {
+				console.error('Errore nella ricerca:', error);
+			});
+	}
+
+	function selectSuggestion(result) {
+		input.value = result.address.freeformAddress;
+		suggestionsList.innerHTML = '';
+		console.log('Selected coordinates:', result.position);
+	}
+</script>
 
 @endsection

@@ -6,6 +6,36 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('page-title') | {{ config('app.name', 'Laravel') }}</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <style>
+            .search-bar {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .suggestions-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                background: white;
+                border: 1px solid #ccc;
+                max-height: 200px;
+                overflow-y: auto;
+                position: absolute;
+                width: 100%;
+                z-index: 10;
+            }
+
+            .suggestions-list li {
+                padding: 8px;
+                cursor: pointer;
+            }
+
+            .suggestions-list li:hover {
+                background: #f0f0f0;
+            }
+        </style>
 
         <!-- Scripts -->
         @vite('resources/js/app.js')

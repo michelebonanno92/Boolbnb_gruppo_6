@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
+use App\Http\Controllers\SearchController;
 
 use App\Http\Controllers\Admin\ServiceController;
 
@@ -47,6 +48,10 @@ Route::resource('homepage', ApartmentController::class);
 
 Route::post('/search-address', [ApartmentController::class, 'searchAddress'])->name('search.address');
 Route::post('/save-coordinates', [ApartmentController::class, 'saveCoordinates'])->name('save.coordinates');
+
+
+
+Route::get('/search', [SearchController::class, 'search']);
 
 
 
