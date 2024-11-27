@@ -15,12 +15,17 @@ class ApartmentController extends Controller
     {
         $apartments = Apartment::get();
 
+        // $apartments = $apartments->paginate(3); 
+
+
         return response()->json([
             'success' => 'true',
             'code' => 200,
-            'data' => [
-                'apartments' => $apartments
-            ]
+            'apartments' => $apartments
+            ,
+            // 'data' => [
+            //     'apartments' => $apartments
+            // ]
         ]);
 
     }
