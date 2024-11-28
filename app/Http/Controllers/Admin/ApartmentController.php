@@ -52,6 +52,10 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'services.required' => 'Devi selezionare almeno un servizio.',
+        ];
+
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:20|max:4096',
@@ -61,9 +65,13 @@ class ApartmentController extends Controller
             'square_meters' => 'required|min:1|max:300',
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
-            'services' => 'nullable|array'
+            'services' => ['required', 'array', function ($attribute, $value, $fail) {
+                if (count($value) < 1) {
+                        $fail('Devi selezionare almeno un servizio.');
+                    }
+                }],
             // 'visible' => 'nullable|in:1,0,true,false',
-        ]);
+        ], $messages);
 
         $coordinates = app(\App\Services\TomTomService::class)->searchAddress($data['address']);
 
@@ -140,10 +148,14 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+        $messages = [
+            'services.required' => 'Devi selezionare almeno un servizio.',
+        ];
+
         if ($apartment->user_id !== auth()->id()) {
             abort(403, 'Non sei autorizzato ad aggiornare questo appartamento.');
         }
-
+        
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:3|max:4096',
@@ -153,10 +165,14 @@ class ApartmentController extends Controller
             'square_meters' => 'required|min:1|max:300',
             'address' => 'required|min:10|max:255',
             'image' => 'nullable|image|max:2048',
-            'services' => 'nullable|array'
+            'services' => ['required', 'array', function ($attribute, $value, $fail) {
+                if (count($value) < 1) {
+                        $fail('Devi selezionare almeno un servizio.');
+                    }
+                }],
 
             // 'visible' => 'nullable|in:1,0,true,false',
-        ]);
+        ], $messages);
 
         $data['slug'] = str()->slug($data['title']);
         // Verifica unicità dello slug se il titolo è stato modificato
