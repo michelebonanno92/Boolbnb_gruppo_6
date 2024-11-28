@@ -30,13 +30,26 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $messages = [
+            'date_of_birth.required' => 'Devi avere almeno 18 anni.',
+        ];
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'date'],
+            'surname' => ['nullable', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'date', 
+            function ($attribute, $value, $fail) {
+                $birthDate = \Carbon\Carbon::parse($value);
+                $now = \Carbon\Carbon::now();
+                $age = $now->diffInYears($birthDate);
+                
+                if ($age < 18) {
+                    $fail('Devi avere almeno 18 anni.');
+                }
+            },    
+        ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ], $messages);
 
         $user = User::create([
             'name' => $request->name,
