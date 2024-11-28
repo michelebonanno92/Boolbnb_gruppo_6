@@ -124,6 +124,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+
+        if ($apartment->user_id !== auth()->id()) {
+            abort(403, 'Non sei autorizzato a modificare questo appartamento.');
+        }
+
         $services = Service::all();
 
         return view('admin.apartments.edit', compact('apartment', 'services'));
@@ -135,6 +140,10 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+        if ($apartment->user_id !== auth()->id()) {
+            abort(403, 'Non sei autorizzato ad aggiornare questo appartamento.');
+        }
+
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
             // 'description' => 'required|min:3|max:4096',
@@ -202,6 +211,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        if ($apartment->user_id !== auth()->id()) {
+            abort(403, 'Non sei autorizzato a eliminare questo appartamento.');
+        }
+        
         if ($apartment->image) {
             Storage::delete($apartment->image);
         }
