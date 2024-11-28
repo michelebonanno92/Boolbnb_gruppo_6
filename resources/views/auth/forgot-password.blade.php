@@ -1,25 +1,34 @@
 @extends('layouts.guest')
 
 @section('main-content')
-    <div>
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card form-card p-4">
+                <div class="mb-2">
+                    {{ __('Hai dimenticato la password? Nessun problema. Facci sapere il tuo indirizzo email e ti invieremo un link per reimpostare la password.') }}
+                </div>
+            
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
+            
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">
+                            Email<span class="text-danger">*</span>
+                        </label>
+                        <input type="email" id="email" name="email"  class="form-control" required>
+                    </div>
+            
+                    <div>
+                        <button type="submit" class="btn btn-success">
+                            Reimposta Password
+                        </button>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
     </div>
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <label for="email">
-                Email
-            </label>
-            <input type="email" id="email" name="email">
-        </div>
-
-        <div>
-            <button type="submit">
-                Email Password Reset Link
-            </button>
-        </div>
-    </form>
+</div>
 @endsection
