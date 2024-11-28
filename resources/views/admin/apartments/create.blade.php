@@ -49,7 +49,7 @@
 				
 						<div class="mb-3">
 							<label for="description" class="form-label fw-bold">Descrizione<span class="text-danger">*</span></label></label>
-							<textarea  class="form-control" id="description"  name="description" placeholder="Inserisci una breve descrizione dell'appartamento..."  value="{{old('description')}}" required minlength="20" maxlength="4096" cols="10" rows="3"></textarea>
+							<textarea  class="form-control" id="description"  name="description" placeholder="Inserisci una breve descrizione dell'appartamento..." required minlength="20" maxlength="4096" cols="10" rows="3">{{old('description')}}</textarea>
 							@error('description')
 								<div class="alert alert-danger mt-2">
 									Errore Descrizione: {{ $message }}
