@@ -20,6 +20,9 @@ class ApartmentController extends Controller
         foreach ($apartments as $apartment) {
             $apartment->load('services');
         }
+        foreach ($apartments as $apartment) {
+            $apartment->load('sponsorships');
+        }
 
         return response()->json([
             'success' => 'true',
