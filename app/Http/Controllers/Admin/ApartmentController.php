@@ -44,7 +44,8 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $sponsorships = Sponsorship::all();
+        return view('admin.apartments.create', compact('services','sponsorships'));
     }
 
     /**
@@ -70,6 +71,7 @@ class ApartmentController extends Controller
                         $fail('Devi selezionare almeno un servizio.');
                     }
                 }],
+            'sponsorships' => 'nullable|array',
             // 'visible' => 'nullable|in:1,0,true,false',
         ], $messages);
 
@@ -109,6 +111,8 @@ class ApartmentController extends Controller
         $apartment = Apartment::create($data);
 
         $apartment->services()->sync($data['services'] ?? []);
+
+        $apartment->sponsorships()->sync($data['sponsorships'] ?? []);
 
 
        
@@ -170,6 +174,7 @@ class ApartmentController extends Controller
                         $fail('Devi selezionare almeno un servizio.');
                     }
                 }],
+            'sponsorships' => 'nullable|array',
 
             // 'visible' => 'nullable|in:1,0,true,false',
         ], $messages);
@@ -214,6 +219,8 @@ class ApartmentController extends Controller
         $apartment->update($data);
 
         $apartment->services()->sync($data['services'] ?? []);
+
+        $apartment->sponsorships()->sync($data['sponsorships'] ?? []);
 
 
         // $apartment->services()->sync($data['services'] ?? []);

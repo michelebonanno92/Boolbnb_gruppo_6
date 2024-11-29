@@ -20,6 +20,9 @@ class ApartmentController extends Controller
         foreach ($apartments as $apartment) {
             $apartment->load('services');
         }
+        foreach ($apartments as $apartment) {
+            $apartment->load('sponsorships');
+        }
 
         return response()->json([
             'success' => 'true',
@@ -33,7 +36,7 @@ class ApartmentController extends Controller
     }
     public function show(string $slug) 
     {
-        $apartment = Apartment::with('services')->where('slug', $slug)->first();
+        $apartment = Apartment::with('services', 'sponsorships')->where('slug', $slug)->first();
 
         // if ($apartment->cover) {
         //     $apartment->cover = asset('storage/'.$apartment->cover);
