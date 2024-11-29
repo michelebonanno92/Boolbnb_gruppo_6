@@ -23,6 +23,9 @@ Route::name('api.')->group(function () {
         return $request->user();
     });
     
-    Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartments.index');
+    Route::resource('apartments', ApartmentController::class)->only([
+        'index',
+        'show'
+    ]);
 
 });
