@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Controller
-use App\Http\Controllers\API\ApartmentController;
+use App\Http\Controllers\API\ApartmentController as ApiApartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Route::name('api.')->group(function () {
         return $request->user();
     });
     
-    Route::resource('apartments', ApartmentController::class)->only([
+    Route::resource('apartments', ApiApartmentController::class)->only([
         'index',
         'show'
     ]);

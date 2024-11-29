@@ -13,16 +13,18 @@ class ApartmentController extends Controller
     
     public function index() 
     {
-        $apartments = Apartment::with('services','sponsorships');
+        $apartments = Apartment::get();
 
-        // $apartments = $apartments->paginate(3); 
+        // $apartments = $apartments->paginate(3);
 
+        foreach ($apartments as $apartment) {
+            $apartment->load('services');
+        }
 
         return response()->json([
             'success' => 'true',
             'code' => 200,
-            'apartments' => $apartments
-            ,
+            'apartments' => $apartments,
             // 'data' => [
             //     'apartments' => $apartments
             // ]
@@ -31,7 +33,7 @@ class ApartmentController extends Controller
     }
     public function show(string $slug) 
     {
-        $apartment = Apartment::with('services','sponsorships')->where('slug', $slug)->first();
+        $apartment = Apartment::with('services')->where('slug', $slug)->first();
 
         // if ($apartment->cover) {
         //     $apartment->cover = asset('storage/'.$apartment->cover);
