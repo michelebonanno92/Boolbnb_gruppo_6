@@ -13,7 +13,7 @@ class ApartmentController extends Controller
     
     public function index() 
     {
-        $apartments = Apartment::get();
+        $apartments = Apartment::with('services','sponsorships');
 
         // $apartments = $apartments->paginate(3); 
 
@@ -31,7 +31,7 @@ class ApartmentController extends Controller
     }
     public function show(string $slug) 
     {
-        $apartment = Apartment::get()->where('slug', $slug)->first();
+        $apartment = Apartment::with('services','sponsorships')->where('slug', $slug)->first();
 
         // if ($apartment->cover) {
         //     $apartment->cover = asset('storage/'.$apartment->cover);
