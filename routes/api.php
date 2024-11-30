@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 //Controller
 use App\Http\Controllers\API\ApartmentController as ApiApartmentController;
+use App\Http\Controllers\API\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,7 @@ Route::name('api.')->group(function () {
         'index',
         'show'
     ]);
+
+    Route::post('/new-message', [MessageController::class, 'newMessage'])->name('new-message');
 
 });
