@@ -28,10 +28,10 @@
   
 					@csrf
 					@method('PUT')
-				
+
 					<div class="mb-3">
 						<label for="title" class="form-label fw-bold">Titolo<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title', $apartment->title)}}" required minlength="3" maxlength="255">
+						<input type="text" class="form-control blocco-enter" id="title"  name="title" placeholder="Inserisci il nome dell'appartamento..." value="{{old('title', $apartment->title)}}" required minlength="3" maxlength="255">
 						@error('title')
 							<div class="alert alert-danger mt-2">
 								Errore Titolo: {{ $message }}
@@ -111,13 +111,19 @@
 						<label for="search-input" class="form-label fw-bold">Cerca Indirizzo<span class="text-danger">*</span></label>
 						<input
 							type="text"
-							id="search-input"
+							id="search-input"  
+							name="address"
 							placeholder="Cerca un indirizzo..."
 							class="form-control"
 							oninput="fetchSuggestions()"
 							value="{{old('address', $apartment->address )}}"
 						/>
 						<ul id="suggestions-list" class="list-group mt-2"></ul>
+						@error('address')
+							<div class="alert alert-danger mt-2">
+								Errore Indirizzo: {{ $message }}
+							</div>
+						@enderror
 					</div>
 				
 					{{-- <div class="mb-3">
@@ -204,22 +210,24 @@
 </div>
 
 <script>
-    const input = document.getElementById('search-input');
-    const suggestionsList = document.getElementById('suggestions-list');
-    const apiKey = 'KtAYjlAUfMLakTMNV7iootfwwERDicp1'; // Inserisci qui la tua chiave API di TomTom
 
 	
-
+	const input = document.getElementById('search-input');
+    const suggestionsList = document.getElementById('suggestions-list');
+    const apiKey = 'KtAYjlAUfMLakTMNV7iootfwwERDicp1'; // Inserisci qui la tua chiave API di TomTom
+	
+	
+	
     function fetchSuggestions() {
         const query = input.value.trim();
-
-        if (query.length < 3) {
+		
+        if (query.length < 1) {
             suggestionsList.innerHTML = ''; // Pulisci i suggerimenti se la query è troppo breve
             return;
         }
 
         // URL dell'API di autocompletamento di TomTom
-        const url = 'https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?key=${apiKey}&typeahead=true&limit=5';
+        const url = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?key=${apiKey}&typeahead=true&limit=5`;
 
         fetch(url)
             .then(response => response.json())
@@ -228,7 +236,7 @@
 
                 const results = data.results || [];
                 results.forEach(result => {
-                    const address = result.address.freeformAddress;
+					const address = result.address.freeformAddress;
                     const li = document.createElement('li');
                     li.classList.add('list-group-item', 'list-group-item-action');
                     li.textContent = address;
@@ -247,6 +255,43 @@
         console.log('Selezionato:', address, 'Coordinate:', position);
         // Puoi salvare o usare position per ulteriori operazioni (es. salvataggio nel form)
     }
+
+	document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const input = document.getElementById('search-input'); // Selezioniamo tutti gli input e textarea
+
+        // Blocco dell'evento Enter sul form e sugli input
+        form.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();  // Previene l'invio tramite Enter
+                console.log('Invio con Enter bloccato');
+            }
+        });
+
+		// Blocco dell'evento Enter sul form e sugli input
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();  // Previene l'invio tramite Enter
+                console.log('Invio con Enter bloccato');
+            }
+        });
+    });
+
+        // // Blocca Enter su ogni input e textarea individualmente
+        // inputs.forEach(input => {
+        //     input.addEventListener('keydown', function(event) {
+        //         if (event.key === 'Enter') {
+        //             event.preventDefault();  // Previene l'invio tramite Enter su input e textarea
+        //             console.log('Invio con Enter bloccato su input:', event.target.name);
+        //         }
+        //     });
+        // });
+
+        // // Blocca il comportamento predefinito del submit se viene attivato tramite il tasto Enter o altri eventi
+        // form.addEventListener('submit', function(event) {
+        //     event.preventDefault();  // Impedisce l'invio del form
+        //     console.log('Form non inviato');
+        // });
 </script>
 
 @endsection

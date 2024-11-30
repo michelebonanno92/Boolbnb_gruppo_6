@@ -102,11 +102,17 @@
 							<input
 								type="text"
 								id="search-input"
+								name="address"
 								placeholder="Cerca un indirizzo..."
 								class="form-control"
 								oninput="fetchSuggestions()"
 							/>
 							<ul id="suggestions-list" class="list-group mt-2"></ul>
+							@error('address')
+								<div class="alert alert-danger mt-2">
+									Errore Indirizzo: {{ $message }}
+								</div>
+							@enderror
 						</div>
 				
 						{{-- <div class="mb-3">
@@ -183,7 +189,7 @@
         }
 
         // URL dell'API di autocompletamento di TomTom
-        const url = 'https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?key=${apiKey}&typeahead=true&limit=5';
+        const url = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?key=${apiKey}&typeahead=true&limit=5`;
 
         fetch(url)
             .then(response => response.json())
@@ -211,6 +217,27 @@
         console.log('Selezionato:', address, 'Coordinate:', position);
         // Puoi salvare o usare position per ulteriori operazioni (es. salvataggio nel form)
     }
+
+	document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const input = document.getElementById('search-input'); // Selezioniamo tutti gli input e textarea
+
+        // Blocco dell'evento Enter sul form e sugli input
+        form.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();  // Previene l'invio tramite Enter
+                console.log('Invio con Enter bloccato');
+            }
+        });
+
+		// Blocco dell'evento Enter sul form e sugli input
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();  // Previene l'invio tramite Enter
+                console.log('Invio con Enter bloccato');
+            }
+        });
+    });
 </script>
 
 @endsection
