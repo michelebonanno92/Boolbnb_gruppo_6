@@ -29,6 +29,9 @@ Route::name('api.')->group(function () {
         'show'
     ]);
 
-    Route::post('/new-message', [MessageController::class, 'newMessage'])->name('new-message');
+    // Route::post('/new-message', [MessageController::class, 'newMessage'])->name('new-message');
+
+    Route::post('/new-message', [MessageController::class, 'sendMessage']);
+
 
 });
