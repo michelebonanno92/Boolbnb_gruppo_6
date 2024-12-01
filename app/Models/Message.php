@@ -15,7 +15,8 @@ class Message extends Model
         // 'user_email'
         'name',
         'email',
-        'message'
+        'message',
+        'apartment_id'
     ];
 
     public function apartment()
