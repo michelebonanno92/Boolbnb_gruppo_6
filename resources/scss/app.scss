@@ -44,3 +44,8 @@ ul {
 .my-services {
     text-transform: capitalize;
 }
+
+.list-group-item-action:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
