@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-12 col-md-6 offset-md-3">
 			<div class="card form-card p-4">
-				<form action="{{ route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data" >
+				<form  action="{{ route('admin.apartments.store')}}" method="POST" enctype="multipart/form-data" >
 						@csrf
 				
 						<div class="mb-3">
@@ -99,7 +99,8 @@
 
 						<div class="mb-3">
 							<label for="search-input" class="form-label fw-bold">Cerca Indirizzo<span class="text-danger">*</span></label>
-							<input
+							<input 
+								autocomplete="off"
 								type="text"
 								id="search-input"
 								name="address"
