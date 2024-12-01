@@ -35,7 +35,7 @@
             </div>
             <div class="col">
                 <div class="card p-3">
-                    placeholder messaggi <a href="#">Vedi tutti i messaggi...</a>
+                    placeholder messaggi <a href="{{ route('admin.messages.index') }}">Vedi tutti i messaggi...</a>
                 </div>
             </div>
         </div>
