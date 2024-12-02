@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //Controller
 use App\Http\Controllers\API\ApartmentController as ApiApartmentController;
 use App\Http\Controllers\API\MessageController as ApiMessageController;
+use App\Http\Controllers\API\ServiceController as ApiServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::name('api.')->group(function () {
     // Route::post('/new-message', [MessageController::class, 'newMessage'])->name('new-message');
     Route::post('/new-message', [ApiMessageController::class, 'sendMessage'])->name('api.new-message');
 
-    
+    Route::get('/services', [ApiServiceController::class, 'index'])->name('api.servises');
+
+
     
 });
