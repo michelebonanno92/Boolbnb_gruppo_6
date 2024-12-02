@@ -49,3 +49,10 @@ ul {
     background-color: #f8f9fa;
     cursor: pointer;
 }
+
+.message-card {
+    border: 1px solid black;
+    &:hover {
+        cursor: pointer;
+    }
+}

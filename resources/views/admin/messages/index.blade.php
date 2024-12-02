@@ -4,22 +4,32 @@
 
 @section('main-content')
     <div class="container">
-        <div class="d-flex justify-content-center pb-4">
+        <div class="text-center py-4">
             <h1>Elenco Messaggi</h1>
         </div>
 
-        @if(isset($messages) && $messages->count())
-            @foreach ($messages as $message)
-                <div>
-                    <strong>Titolo Appartamento:</strong> {{ $message->apartment->title }}<br>
-                    <strong>Mittente</strong> {{ $message->email }}<br>
-                    <strong>Messaggio:</strong> {{ $message->message }}
-                </div>
-            @endforeach
-        @else
-            <h2>
-                Non hai ancora ricevuto messaggi...
-            </h2>
-        @endif
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                @if(isset($messages) && $messages->count())
+                    @foreach ($messages as $message)
+                        <div class="message-card rounded mb-2 p-3">
+                            <div>
+                                <strong>Titolo Appartamento:</strong> {{ $message->apartment->title }}
+                            </div>
+                            <div>
+                                <strong>Mittente</strong> {{ $message->email }}
+                            </div>
+                            <div>
+                                <strong>Messaggio:</strong> {{ $message->message }}
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <h2>
+                        Non hai ancora ricevuto messaggi...
+                    </h2>
+                @endif
+            </div>
+        </div>
     </div>
 @endsection
