@@ -23,18 +23,18 @@ class MessageSeeder extends Seeder
         Message::truncate();
         Schema::enableForeignKeyConstraints();
 
-        // for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
 
-        //     $randomApartment = Apartment::inRandomOrder()->first();
-        //     $randomApartmentId = $randomApartment->id;
+            $randomApartment = Apartment::inRandomOrder()->first();
+            $randomApartmentId = $randomApartment->id;
 
-        //     Message::create([
-        //         'apartment_id' => $randomApartmentId,
-        //         // 'message_text' => fake()->paragraph(4),
-        //         // 'sent_date' => fake()->date(),
-        //         // 'user_email' => fake()->email()
+            Message::create([
+                'apartment_id' => $randomApartmentId,
+                'message' => fake()->paragraph(4),
+                'email' => fake()->email(),
+                'name' => fake()->name(),
 
-        //     ]);
-        // }
+            ]);
+        }
     }
 }
