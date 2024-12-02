@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sponsorship extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'packet_type',
-        'amount',
-        'duration'
-        
+        'package',
+        'price',
+        'start_time',
+        'end_time'
     ];
 
     public function apartments()

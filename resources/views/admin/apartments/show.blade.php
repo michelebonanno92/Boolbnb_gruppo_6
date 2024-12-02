@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-auto d-flex">
+						<div class="d-flex justify-content-between">
 							<div class="d-inline-block me-3">
 								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-success mb-4"><- Indietro</a>
 							</div>
@@ -78,6 +78,10 @@
 									Elimina
 								</button>
 							</form>
+
+							<div class="d-inline-block me-3">
+								<a href="{{ route('admin.sponsorships.index')}}"  class="btn btn-outline-primary mb-4">Sponsorizza</a>
+							</div>
 						</div>
 					</div>
 				</div>
