@@ -3,7 +3,7 @@
 @section('page-title', 'Sponsorizzazioni')
 
 @section('main-content')
-    
+
 <div class="container">
     <h2>Sponsorizza il tuo appartamento</h2>
 
@@ -22,7 +22,7 @@
             <label for="apartment_id" class="form-label">Seleziona Appartamento:</label>
             <select name="apartment_id" id="apartment_id" class="form-control">
                 @foreach ($apartments as $apartment)
-                    <option value="{{ $apartment->id }}">{{ $apartment->name }}</option>
+                    <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
                 @endforeach
             </select>
         </div>
