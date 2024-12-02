@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('sponsorships', function (Blueprint $table) {
             $table->id();
 
-            $table->string('packet_type');
-            $table->decimal('amount', 5, 2);
-            $table->integer('duration');
+            $table->enum('package', ['24h', '72h', '144h']);
+            $table->decimal('price', 8, 2);
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
+            // $table->string('packet_type');
+            // $table->decimal('amount', 5, 2);
+            // $table->integer('duration');
 
             $table->timestamps();
         });
