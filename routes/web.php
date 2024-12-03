@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SponsorshipController as AdminSponsorshipControll
 
 
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ViewController;
 
 //importato secondo apartment controller per errore a riga 45. da rivedere
 use App\Http\Controllers\ApartmentController;
@@ -37,6 +38,7 @@ Route::prefix('admin')
     ->group(function () {
 
     Route::get('/dashboard', [AdminMainController::class, 'showDashboard'])->name('dashboard');
+    // Route::get('/dashboard', [ViewController::class, 'index'])->name('view.index');
     
     //rotta controller apartments
     Route::resource('apartments', AdminApartmentController::class);

@@ -27,7 +27,24 @@
         <div class="row">
             <div class="col">
                 <div class="card p-3">
-                    placeholder visualizazioni
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Appartamento</th>
+                                    <th class="text-center">Visualizzazioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($viewsCounts as $item)
+                                    <tr>
+                                        <td>{{ $item->apartment_name }}</td>
+                                        <td class="text-center">{{ $item->view_count }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col">
