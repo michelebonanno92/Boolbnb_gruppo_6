@@ -9,19 +9,32 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    // public function up(): void
+    // {
+    //     Schema::create('sponsorships', function (Blueprint $table) {
+    //         $table->id();
+
+            
+    //         $table->enum('package', ['24h', '72h', '144h']);
+    //         $table->decimal('price', 8, 2);
+    //         $table->timestamp('start_time')->nullable();
+    //         $table->timestamp('end_time')->nullable();
+    //         // $table->string('packet_type');
+    //         // $table->decimal('amount', 5, 2);
+    //         // $table->integer('duration');
+
+    //         $table->timestamps();
+    //     });
+    // }
+    public function up()
     {
         Schema::create('sponsorships', function (Blueprint $table) {
             $table->id();
-
-            $table->enum('package', ['24h', '72h', '144h']);
+            $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
+            $table->string('package'); // 24h, 72h, 144h
             $table->decimal('price', 8, 2);
-            $table->timestamp('start_time')->nullable();
-            $table->timestamp('end_time')->nullable();
-            // $table->string('packet_type');
-            // $table->decimal('amount', 5, 2);
-            // $table->integer('duration');
-
+            // $table->timestamp('start_time');
+            // $table->timestamp('end_time');
             $table->timestamps();
         });
     }

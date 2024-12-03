@@ -46,32 +46,68 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
 <script>
-    var form = document.querySelector('form');
-    var nonceInput = document.querySelector('#payment_method_nonce');
+    // var form = document.querySelector('form');
+    // var nonceInput = document.querySelector('#payment_method_nonce');
+    // var clientToken = '{{ $clientToken }}';
+    // console.log(clientToken); // Debug: Controlla che venga visualizzato correttamente
+
+    // braintree.dropin.create({
+    //     authorization: '{{ $clientToken }}',
+    //     container: '#dropin-container'
+    // }, function (createErr, instance) {
+    //     if (createErr) {
+    //         console.error('Dropin Create Error:', createErr);
+    //         return;
+    //     }
+
+    //     form.addEventListener('submit', function (event) {
+    //         event.preventDefault();
+
+    //         instance.requestPaymentMethod(function (err, payload) {
+    //             if (err) {
+    //                 console.error('Request Payment Method Error:', err);
+    //                 return;
+    //             }
+
+    //             nonceInput.value = payload.nonce;
+    //             form.submit();
+    //         });
+    //     });
+    // });
 
     braintree.dropin.create({
-        authorization: '{{ $clientToken }}',
-        container: '#dropin-container'
-    }, function (createErr, instance) {
-        if (createErr) {
-            console.error('Dropin Create Error:', createErr);
-            return;
-        }
+    authorization: '{{ $clientToken }}',
+    container: '#dropin-container'
+}, function (createErr, instance) {
+    if (createErr) {
+        console.error('Dropin Create Error:', createErr);
+        alert('Errore nel caricamento del sistema di pagamento.');
+        return;
+    }
 
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
+    var form = document.querySelector('form');
+    var nonceInput = document.querySelector('#payment_method_nonce');
+    var clientToken = '{{ $clientToken }}';
+    console.log(clientToken); // Debug: Controlla che venga visualizzato correttamente
 
-            instance.requestPaymentMethod(function (err, payload) {
-                if (err) {
-                    console.error('Request Payment Method Error:', err);
-                    return;
-                }
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-                nonceInput.value = payload.nonce;
-                form.submit();
-            });
+        instance.requestPaymentMethod(function (err, payload) {
+            if (err) {
+                console.error('Request Payment Method Error:', err);
+                alert('Errore durante la richiesta del metodo di pagamento.');
+                return;
+            }
+
+            console.log('Nonce generato:', payload.nonce); // Debug
+            nonceInput.value = payload.nonce;
+
+            form.submit(); // Invio del form solo dopo aver assegnato il nonce
         });
     });
+});
+
 </script> 
 
 @endsection

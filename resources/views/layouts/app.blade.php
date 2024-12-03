@@ -24,7 +24,7 @@
                                 <a class="nav-link" href="{{ route('admin.apartments.index') }}">Appartamenti</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Sponsorizza?</a>
+                                <a class="nav-link" href="{{ route('admin.sponsorships.index') }}">Sponsorizza</a>
                             </li>
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">
