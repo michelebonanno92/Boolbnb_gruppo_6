@@ -1,5 +1,7 @@
 <?php
 
+    
+
 // namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -64,3 +66,50 @@
 //         }
 //     }
 // }
+
+
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+// Models
+use App\Models\Apartment;
+use App\Models\Sponsorship;
+use Carbon\Carbon;
+
+class SponsorshipSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run()
+    {
+        $packages = [
+            '24h' => 2.99,
+            '72h' => 5.99,
+            '144h' => 9.99,
+        ];
+
+        $apartments = Apartment::all();
+
+        foreach ($apartments as $apartment) {
+            foreach (array_keys($packages) as $package) {
+                // $startTime = Carbon::now();
+                // $endTime = $startTime->copy()->addHours((int)str_replace('h', '', $package));
+
+                Sponsorship::create([
+                    'apartment_id' => $apartment->id,
+                    'package' => $package,
+                    'price' => $packages[$package],
+                    // 'start_time' => $startTime,
+                    // 'end_time' => $endTime,
+                ]);
+            }
+        }
+    }
+}
