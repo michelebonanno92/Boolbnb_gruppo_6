@@ -29,13 +29,28 @@
                 <div class="card p-3">
                     placeholder visualizazioni
                 </div>
-                <div>
-                    Appartamento casa bella:...
-                </div>
             </div>
             <div class="col">
                 <div class="card p-3">
-                    placeholder messaggi <a href="{{ route('admin.messages.index') }}">Vedi tutti i messaggi...</a>
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Appartamento</th>
+                                    <th class="text-center">Messaggi ricevuti</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($messageCounts as $item)
+                                    <tr>
+                                        <td>{{ $item->apartment_name }}</td>
+                                        <td class="text-center">{{ $item->message_count }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="{{ route('admin.messages.index') }}">Vedi tutti i messaggi...</a>
                 </div>
             </div>
         </div>

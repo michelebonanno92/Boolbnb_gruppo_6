@@ -36,7 +36,7 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
 
-    Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [AdminMainController::class, 'showDashboard'])->name('dashboard');
     
     //rotta controller apartments
     Route::resource('apartments', AdminApartmentController::class);
