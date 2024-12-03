@@ -9,10 +9,11 @@ class Sponsorship extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'apartment_id',
         'package',
         'price',
-        'start_time',
-        'end_time'
+        // 'start_time',
+        // 'end_time'
     ];
 
     public function apartments()
