@@ -23,7 +23,10 @@
             <label for="apartment_id" class="form-label">Seleziona Appartamento:</label>
             <select name="apartment_id" id="apartment_id" class="form-control">
                 @foreach ($apartments as $apartment)
-                    <option value="{{ $apartment->id }}">{{ $apartment->title }}</option>
+                    <option value="{{ $apartment->id }}" 
+                        @if ($apartment->id == $selectedApartmentId) selected @endif>
+                        {{ $apartment->title }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -50,49 +53,7 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
 <script>
-    // braintree.dropin.create({
-    //     authorization: '{{ $clientToken }}',  // Il token di autorizzazione Braintree
-    //     container: '#dropin-container'  // Contenitore dove Braintree mostra la UI per la carta
-    // }, function (createErr, instance) {
-    //     if (createErr) {
-    //         console.error('Errore nella creazione del sistema di pagamento:', createErr);
-    //         alert('Errore nel caricamento del sistema di pagamento.');
-    //         return;
-    //     }
-
-    //     var form = document.getElementById('payment-form');
-    //     var nonceInput = document.getElementById('payment_method_nonce');
-    //     var amountInput = document.getElementById('amount');
-    //     var packageSelect = document.getElementById('package');
-
-    //     // Aggiungi un evento di cambio per aggiornare l'importo in base al pacchetto selezionato
-    //     packageSelect.addEventListener('change', function () {
-    //         var selectedPackage = packageSelect.options[packageSelect.selectedIndex];
-    //         var price = selectedPackage.getAttribute('data-price');
-    //         amountInput.value = price; // Aggiorna l'importo con il prezzo del pacchetto selezionato
-    //     });
-
-    //     // Gestisci l'invio del form
-    //     form.addEventListener('submit', function (event) {
-    //         event.preventDefault(); // Evita l'invio immediato del form
-
-    //         // Richiedi il metodo di pagamento (generazione del nonce)
-    //         instance.requestPaymentMethod(function (err, payload) {
-    //             if (err) {
-    //                 console.error('Errore nella richiesta del metodo di pagamento:', err);
-    //                 alert('Errore durante la richiesta del metodo di pagamento.');
-    //                 return;
-    //             }
-
-    //             // Assicurati che il nonce venga inserito nel campo nascosto
-    //             nonceInput.value = payload.nonce;
-
-    //             // Dopo aver ricevuto il nonce, invia il form
-    //             form.submit();  // Ora puoi inviare il form con il nonce
-    //         });
-    //     });
-    // });
-
+    
     var form = document.getElementById('payment-form');
     var clientToken = "{{ $clientToken }}";
 
