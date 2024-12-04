@@ -16,7 +16,7 @@
         <div class="alert alert-danger">{{ implode('', $errors->all(':message')) }}</div>
     @endif
 
-    <form method="POST" action="{{ route('admin.sponsorships.store') }}">
+    <form method="POST" action="{{ route('admin.sponsorships.store') }}" id="payment-form">
         @csrf
 
         <div class="mb-3">
@@ -58,10 +58,10 @@
             return;
         }
 
-        var form = document.querySelector('form');
-        var nonceInput = document.querySelector('#payment_method_nonce');
-        var amountInput = document.querySelector('#amount');
-        var packageSelect = document.querySelector('#package');
+        var form = document.getElementById('payment-form');
+        var nonceInput = document.getElementById('payment_method_nonce');
+        var amountInput = document.getElementById('amount');
+        var packageSelect = document.getElementById('package');
 
         // Aggiungi un evento di cambio per aggiornare l'importo in base al pacchetto selezionato
         packageSelect.addEventListener('change', function () {

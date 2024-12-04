@@ -54,8 +54,8 @@ Route::prefix('admin')
     Route::get('/sponsorships', [AdminSponsorshipController::class, 'index'])->name('sponsorships.index');
     Route::post('/sponsorships', [AdminSponsorshipController::class, 'store'])->name('sponsorships.store');
 
-    Route::get('/payment/{apartmentId}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
-    Route::post('/payment', [PaymentController::class, 'createTransaction'])->name('payment.create');
+    // Route::get('/payment/{apartmentId}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    // Route::post('/payment', [PaymentController::class, 'createTransaction'])->name('payment.create');
 
 });
 
