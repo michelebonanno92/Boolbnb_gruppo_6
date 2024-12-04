@@ -18,6 +18,8 @@ class Sponsorship extends Model
 
     public function apartments()
     {
-        return $this->belongsToMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class, 'apartment_sponsorship')
+                    ->withPivot('start_time', 'end_time')
+                    ->withTimestamps();
     }
 }

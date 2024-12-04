@@ -7,7 +7,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
 use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\SponsorshipController as AdminSponsorshipController;;
+use App\Http\Controllers\Admin\SponsorshipController as AdminSponsorshipController;
+use App\Http\Controllers\Admin\PaymentController;
 
 
 use App\Http\Controllers\Admin\ServiceController;
@@ -52,6 +53,9 @@ Route::prefix('admin')
     // rotte per le sponzorizzazioni e pagamento 
     Route::get('/sponsorships', [AdminSponsorshipController::class, 'index'])->name('sponsorships.index');
     Route::post('/sponsorships', [AdminSponsorshipController::class, 'store'])->name('sponsorships.store');
+
+    // Route::get('/payment/{apartmentId}', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    // Route::post('/payment', [PaymentController::class, 'createTransaction'])->name('payment.create');
 
 });
 

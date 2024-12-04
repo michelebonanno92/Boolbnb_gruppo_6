@@ -26,15 +26,13 @@ return new class extends Migration
     //         $table->timestamps();
     //     });
     // }
-    public function up()
+    public function up(): void
     {
         Schema::create('sponsorships', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
-            $table->string('package'); // 24h, 72h, 144h
-            $table->decimal('price', 8, 2);
-            // $table->timestamp('start_time');
-            // $table->timestamp('end_time');
+            $table->string('name', 50); // Nome del pacchetto (es. 24h, 72h)
+            $table->decimal('price', 8, 2); // Prezzo del pacchetto
+            $table->smallInteger('duration_hours'); // Durata in ore
             $table->timestamps();
         });
     }
