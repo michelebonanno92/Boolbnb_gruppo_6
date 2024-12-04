@@ -68,7 +68,22 @@
                             @endif
                         </div>
 
-                        <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
+                        <div class="btn-container">
+                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
+                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-primary my-4">Modifica</a>
+                            {{-- <a href=<a href="{{ route('admin.messages.show') }}">Vedi tutti i messaggi...</a> class="btn btn-primary my-4">Messaggi</a> --}}
+                            <form 
+								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
+								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
+								method="POST" 
+								class="d-inline-block">
+								@csrf
+								@method('DELETE')
+								<button type="submit" class="btn btn-danger">
+									Elimina
+								</button>
+							</form>
+                        </div>
 
                     </div>
                 </div>
