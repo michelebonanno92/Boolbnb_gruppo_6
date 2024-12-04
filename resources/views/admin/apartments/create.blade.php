@@ -13,9 +13,7 @@
 			  </h1>
 			  
 			  <div class="mb-3">
-				<label for="name">
-					<span class="text-danger">*</span>Campi obbligatori
-				</label>
+				<span class="text-danger">*</span>Campi obbligatori
 			  </div>
 		</div>
 	</div>
@@ -128,7 +126,7 @@
 						{{-- servizi --}}
 						<div class="card my-services p-4 mb-3">
 							<div>
-								<label for="service" class="form-label fw-bold">Servizi:</label>
+								<p class="form-label fw-bold">Servizi:</p>
 							</div>
 							@foreach ($services as $service)
 								<div class="form-check form-check-inline">
