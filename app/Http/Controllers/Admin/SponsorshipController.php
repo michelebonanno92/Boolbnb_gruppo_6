@@ -11,106 +11,83 @@ use Braintree\Gateway;
 // MODEL
 use App\Models\{
     Sponsorship,
-    Apartment
+    Apartment,
+    User
 };
 
 class SponsorshipController extends Controller
 {
-    // public function index(Gateway $gateway)
-    // {
-    //     $user = Auth()->user();
-    //     $apartments = $user->apartments; // Assuming the user has apartments
-    //     $clientToken = $gateway->clientToken()->generate();
-
-    //     return view('admin.sponsorships.index', compact('apartments', 'clientToken'));
-    // }
-
-    // public function store(Request $request, Gateway $gateway)
-    // {
-    //     // dd($request);
-    //     $validate = $request->validate([
-    //         'apartment_id' => 'required|exists:apartments,id',
-    //         'package' => 'required|in:24h,72h,144h',
-    //         'payment_method_nonce' => 'required|string',
-    //     ]);
-    //     // \Log::info('Nonce ricevuto:', ['nonce' => $request->payment_method_nonce]);
-
-    //     $prices = ['24h' => 2.99, '72h' => 5.99, '144h' => 9.99];
-    //     $price = $prices[$request->package];
-
-    //     $result = $gateway->transaction()->sale([
-    //         'amount' => $price,
-    //         'paymentMethodNonce' => $request->payment_method_nonce,
-    //         'options' => ['submitForSettlement' => true],
-    //     ]);
-
-    //     if ($result->success) {
-    //         // $startTime = now();
-    //         // $endTime = $startTime->copy()->addHours((int)str_replace('h', '', $request->package));
-
-    //         Sponsorship::create([
-    //             'apartment_id' => $request->apartment_id,
-    //             'package' => $request->package,
-    //             'price' => $price,
-    //             // 'start_time' => $startTime,
-    //             // 'end_time' => $endTime,
-    //         ]);
-
-    //         return redirect()->route('admin.sponsorships.index')->with('success', 'Sponsorship created successfully!');
-    //     } else {
-    //         return back()->withErrors(['payment' => 'Payment failed. Please try again.']);
-    //     }
-
     
-    // }
+    //************************************* */
+    public function index(Request $request, Gateway $gateway)
+{
+    $user = auth()->user();
 
+    // Recupera gli appartamenti dell'utente
+    $apartments = $user->apartments;
 
-    public function index(Gateway $gateway)
-    {
-        $user = auth()->user();
-        $apartments = $user->apartments;
-        $sponsorships = Sponsorship::all();
-        $clientToken = $gateway->clientToken()->generate();
+    // Recupera tutte le sponsorizzazioni
+    $sponsorships = Sponsorship::all();
 
-        return view('admin.sponsorships.index', compact('apartments', 'sponsorships', 'clientToken'));
+    // Genera il client token per il Drop-In di Braintree
+    $clientToken = $gateway->clientToken()->generate();
+
+    // Recupera l'ID dell'appartamento pre-selezionato, se presente
+    $selectedApartmentId = $request->query('apartment_id', null);
+
+    return view('admin.sponsorships.index', compact(
+        'apartments', 
+        'sponsorships', 
+        'clientToken', 
+        'selectedApartmentId'
+    ));
+}
+
+public function store(Request $request, Gateway $gateway)
+{
+    $validated = $request->validate([
+        'apartment_id' => 'required|exists:apartments,id',
+        'sponsorship_id' => 'required|exists:sponsorships,id',
+        'payment_method_nonce' => 'required|string',
+    ]);
+
+    // Recupera l'appartamento e verifica che appartenga all'utente autenticato
+    $apartment = auth()->user()->apartments()->find($request->apartment_id);
+    if (!$apartment) {
+        return back()->withErrors(['apartment_id' => 'L\'appartamento selezionato non è valido.']);
     }
 
-    public function store(Request $request, Gateway $gateway)
-    {
-        $validated = $request->validate([
-            'apartment_id' => 'required|exists:apartments,id',
-            'sponsorship_id' => 'required|exists:sponsorships,id',
-            'payment_method_nonce' => 'required|string',
-        ]);
+    // Recupera la sponsorizzazione
+    $sponsorship = Sponsorship::findOrFail($request->sponsorship_id);
 
-        $sponsorship = Sponsorship::findOrFail($request->sponsorship_id);
-        $apartment = Apartment::findOrFail($request->apartment_id);
-
+    // Avvia la transazione con Braintree
+    try {
         $result = $gateway->transaction()->sale([
             'amount' => $sponsorship->price,
             'paymentMethodNonce' => $request->payment_method_nonce,
             'options' => ['submitForSettlement' => true],
         ]);
-
-        if ($result->success) {
-            $startTime = now();
-            $endTime = $startTime->addHours($sponsorship->duration_hours);
-
-            $apartment->sponsorships()->attach($sponsorship->id, [
-                'start_time' => $startTime,
-                'end_time' => $endTime,
-            ]);
-
-            return redirect()->route('admin.sponsorships.index')->with('success', 'Appartamento sponsorizzato con successo!');
-        } else {
-            return back()->withErrors(['payment' => 'Errore nel pagamento: ' . $result->message]);
-        }
+    } catch (\Exception $e) {
+        return back()->withErrors(['payment' => 'Errore nel pagamento: ' . $e->getMessage()]);
     }
 
-    // public function create(Request $request, Gateway $gateway)
-    // {
-    //     $clientToken = $gateway->clientToken()->generate();
+    // Verifica il risultato della transazione
+    if ($result->success) {
+        // Calcola il periodo di sponsorizzazione
+        $startTime = now();
+        $endTime = $startTime->copy()->addHours($sponsorship->duration_hours);
 
-    //     return view('admin.sponsorships.index', compact('clientToken'));
-    // }
+        // Associa la sponsorizzazione all'appartamento tramite la tabella pivot
+        $apartment->sponsorships()->attach($sponsorship->id, [
+            'start_time' => $startTime,
+            'end_time' => $endTime,
+        ]);
+
+        return redirect()->route('admin.sponsorships.index')
+            ->with('success', 'Appartamento sponsorizzato con successo!');
+    } else {
+        return back()->withErrors(['payment' => 'Errore nel pagamento: ' . $result->message]);
+    }
+}
+
 }
