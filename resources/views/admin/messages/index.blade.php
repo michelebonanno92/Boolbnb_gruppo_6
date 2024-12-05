@@ -11,19 +11,34 @@
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
                 @if(isset($messages) && $messages->count())
-                    @foreach ($messages as $message)
-                        <div class="message-card rounded mb-2 p-3">
-                            <div>
-                                <strong>Titolo Appartamento:</strong> {{ $message->apartment->title }}
-                            </div>
-                            <div>
-                                <strong>Mittente</strong> {{ $message->email }}
-                            </div>
-                            <div>
-                                <strong>Messaggio:</strong> {{ $message->message }}
-                            </div>
-                        </div>
+
+                <div class="accordion" id="accordionExample">
+                    @foreach($apartments as $key => $apartment)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $key }}">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
+                            {{ $apartment->title }}
+                          </button>
+                        </h2>
+                        <div id="collapse{{ $key }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $key }}" data-bs-parent="#accordionExample">
+                            @foreach ($messages as $message)
+                                @if($message->apartment_id == $apartment->id)
+                                    <div class="accordion-body">
+                                       <a href="{{ route('admin.messages.show', $message->id) }}">
+                                            <div>
+                                                Mittente: {{ $message->name }}
+                                            </div>
+                                            <div>
+                                                Email: {{ $message->email }}
+                                            </div>
+                                       </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                          </div>
+                      </div>
                     @endforeach
+                </div>
                 @else
                     <h2>
                         Non hai ancora ricevuto messaggi...
