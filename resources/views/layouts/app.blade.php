@@ -7,6 +7,15 @@
 
         <title>@yield('page-title') | {{ config('app.name', 'Laravel') }}</title>
 
+        <!-- TomTom Maps SDK CSS -->
+        <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/6.x/6.20.0/maps/maps.css">
+        <style>
+            #map {
+                width: 100%;
+                height: 500px;
+            }
+        </style>
+
         <!-- Scripts -->
         @vite('resources/js/app.js')
     </head>
