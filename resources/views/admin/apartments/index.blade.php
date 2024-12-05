@@ -69,7 +69,8 @@
                             @endif
                         </div>
                         <div class="mt-4">
-                            <ul class="service-list">
+                            <span class="mb-4">Servizi:</span>
+                            <ul class="service-list mt-2">
                                 @foreach ($apartment->services as $service)
                                     <li class="badge text-bg-secondary my-services rounded-pill">
                                         {{ $service->service_name }}
@@ -91,9 +92,9 @@
                         </div>
 
                         <div class="btn-container">
-                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-outline-primary my-4">Dettagli</a>
+                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-outline-warning my-4">Dettagli</a>
 
-                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-primary my-4">Modifica</a>
+                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-warning my-4">Modifica</a>
                             
                             <a href="{{ route('admin.messages.index') }}"  class="btn btn-outline-warning my-4">Messaggi</a>
                             <form 
