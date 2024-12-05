@@ -46,7 +46,7 @@
 
         <input type="hidden" id="payment_method_nonce" name="payment_method_nonce">
         <input type="hidden" id="amount" name="amount" value="2.99"> <!-- Importo di default -->
-
+        <a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-secondary">Indietro</a>
         <button type="submit" class="btn btn-primary">Paga e Sponsorizza</button>
     </form>
 </div>

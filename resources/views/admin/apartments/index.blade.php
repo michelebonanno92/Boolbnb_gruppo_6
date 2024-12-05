@@ -19,7 +19,13 @@
                 </div>
             </div>
         </div>
-        
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">{{ implode('', $errors->all(':message')) }}</div>
+        @endif
         <div class="container mb-4">
             <div class="row">
                 @forelse ($apartments as $apartment)
@@ -45,11 +51,27 @@
                                 Bagni: <span class="fw-bold">{{ $apartment->toilets }}</span>
                             </li>
                         </ul>
-                    
+                        
+                        <div>
+                            @if($apartment->sponsorships->count())
+                                <div class="badge text-bg-warning my-services">
+                                    Sponsorizzato
+                                </div>
+                                @if($apartment->sponsorships->count() > 1)
+                                    <span>Durata:</span>
+                                    {{ $apartment->sponsorships->sum('duration_hours') }}
+                                    <span>ore</span>
+                                @else
+                                    <span>Durata:</span>
+                                    {{ $apartment->sponsorships->first()->duration_hours }}
+                                    <span>ore</span>
+                                @endif
+                            @endif
+                        </div>
                         <div class="mt-4">
                             <ul class="service-list">
                                 @foreach ($apartment->services as $service)
-                                    <li class="badge text-bg-primary my-services rounded-pill">
+                                    <li class="badge text-bg-secondary my-services rounded-pill">
                                         {{ $service->service_name }}
                                     </li>
                                 @endforeach
@@ -69,9 +91,11 @@
                         </div>
 
                         <div class="btn-container">
-                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary my-4">Dettagli</a>
-                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-primary my-4">Modifica</a>
-                            {{-- <a href=<a href="{{ route('admin.messages.show') }}">Vedi tutti i messaggi...</a> class="btn btn-primary my-4">Messaggi</a> --}}
+                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-outline-primary my-4">Dettagli</a>
+
+                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-primary my-4">Modifica</a>
+                            
+                            <a href="{{ route('admin.messages.index') }}"  class="btn btn-outline-warning my-4">Messaggi</a>
                             <form 
 								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
 								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 

@@ -6,19 +6,19 @@
 
 	<div class="container">
 		
-        <div>
+        <div class="mb-2">
             {{ $message->name }}
         </div>
-        <div>
+        <div class="mb-2">
             {{ $message->apartment->title }}
         </div>
-        <div>
+        <div class="mb-2">
             {{ $message->message }}
         </div>
-
-         <button class="btn btn-outline-warning">
+        <input type="text" class="form-control mb-3">
+        <button class="btn btn-outline-warning">
             Rispondi
-         </button>
+        </button>
        
 	</div>
 

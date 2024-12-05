@@ -24,7 +24,7 @@
                             @foreach ($messages as $message)
                                 @if($message->apartment_id == $apartment->id)
                                     <div class="accordion-body">
-                                       <a href="">
+                                       <a href="{{ route('admin.messages.show', $message->id) }}">
                                             <div>
                                                 Mittente: {{ $message->name }}
                                             </div>

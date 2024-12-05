@@ -83,7 +83,7 @@ public function store(Request $request, Gateway $gateway)
             'end_time' => $endTime,
         ]);
 
-        return redirect()->route('admin.sponsorships.index')
+        return redirect()->route('admin.apartments.index')
             ->with('success', 'Appartamento sponsorizzato con successo!');
     } else {
         return back()->withErrors(['payment' => 'Errore nel pagamento: ' . $result->message]);
