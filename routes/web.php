@@ -42,6 +42,8 @@ Route::prefix('admin')
     //rotta controller apartments
     Route::resource('apartments', AdminApartmentController::class);
 
+    Route::get('apartments/{apartment}/messages', [AdminApartmentController::class, 'messages'])->name('apartments.messages');
+
     //rotta controller service
     Route::resource('services', ServiceController::class);
 

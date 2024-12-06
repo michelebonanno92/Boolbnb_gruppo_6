@@ -5,10 +5,14 @@
 @section('main-content')
     <div class="container">
         <div class="text-center py-4">
-            <h1>Elenco Messaggi</h1>
+            <h1>Messaggi dell'appartamento: {{ $apartment->title }} </h1>
         </div>
 
         <div class="row">
+            <div class="col"></div>
+        </div>
+
+        {{-- <div class="row">
             <div class="col-12">
                 @if(isset($messages) && $messages->count())
 
@@ -47,6 +51,6 @@
                     </h2>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
