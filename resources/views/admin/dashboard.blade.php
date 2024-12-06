@@ -76,7 +76,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="{{ route('admin.messages.index') }}">Vedi tutti i messaggi...</a>
+                    <a href="{{ route('admin.messages.index') }}" class="btn btn-warning">Vedi tutti i messaggi...</a>
                 </div>
             </div>
         </div>
