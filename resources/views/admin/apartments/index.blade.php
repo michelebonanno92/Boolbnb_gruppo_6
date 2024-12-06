@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-6 col-md-4">
                     <div>
-                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-success my-4 w-100">Nuovo appartamento</a>
+                        <a href="{{ route('admin.apartments.create') }}" class="btn btn-outline-success my-4 w-100">Nuovo appartamento</a>
                     </div>
                 </div>
             </div>
@@ -54,25 +54,23 @@
                         
                         <div>
                             @if($apartment->sponsorships->count())
-                                <div class="badge text-bg-warning my-services">
-                                    Sponsorizzato
-                                </div>
                                 @if($apartment->sponsorships->count() > 1)
-                                    <span>Durata:</span>
-                                    {{ $apartment->sponsorships->sum('duration_hours') }}
-                                    <span>ore</span>
+                                    <i class="fa-solid fa-bolt text-warning"></i>
+                                    <strong class="fs-4">
+                                        {{ $apartment->sponsorships->sum('duration_hours') }}
+                                    </strong>
+                                    <strong class="fs-4">ore</strong>
                                 @else
-                                    <span>Durata:</span>
-                                    {{ $apartment->sponsorships->first()->duration_hours }}
-                                    <span>ore</span>
+                                    <i class="fa-solid fa-bolt text-warning"></i>
+                                    <strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
+                                    <span class="fs-4">ore</span>
                                 @endif
                             @endif
                         </div>
                         <div class="mt-4">
-                            <span class="mb-4">Servizi:</span>
                             <ul class="service-list mt-2">
                                 @foreach ($apartment->services as $service)
-                                    <li class="badge text-bg-secondary my-services rounded-pill">
+                                    <li class="badge text-dark my-services fs-6">
                                         {{ $service->service_name }}
                                     </li>
                                 @endforeach
@@ -92,7 +90,7 @@
                         </div>
 
                         <div class="btn-container">
-                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-outline-warning my-4">Dettagli</a>
+                            <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-warning my-4">Dettagli</a>
 
                             <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-warning my-4">Modifica</a>
                             
@@ -104,7 +102,7 @@
 								class="d-inline-block">
 								@csrf
 								@method('DELETE')
-								<button type="submit" class="btn btn-danger">
+								<button type="submit" class="btn btn-outline-danger">
 									Elimina
 								</button>
 							</form>

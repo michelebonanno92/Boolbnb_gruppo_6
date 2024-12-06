@@ -28,10 +28,30 @@
 							</div>
 						@endif
 					</div>
+					<div class="mb-2">
+						@if($apartment->sponsorships->count())
+							@if($apartment->sponsorships->count() > 1)
+								<i class="fa-solid fa-bolt text-warning"></i>
+								<strong class="fs-4">
+									{{ $apartment->sponsorships->sum('duration_hours') }}
+								</strong>
+								<strong class="fs-4">ore</strong>
+							@else
+								<i class="fa-solid fa-bolt text-warning"></i>
+								<strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
+								<span class="fs-4">ore</span>
+							@endif
+						@endif
+					</div>
+					<div>
+						<a href="{{ route('admin.sponsorships.index', ['apartment_id' => $apartment->id]) }}"  class="btn btn-outline-primary fs-4 fw-semibold w-100 mb-4">
+							Sponsorizza
+						</a>
+					</div>
 					<p>
 						{{ $apartment->address }}
 					</p>
-					<p>
+					<p class="text-start">
 						{{ $apartment->description }}
 					</p>
 					<ul class="text-start">
@@ -46,11 +66,10 @@
 						</li>
 					</ul>
 
-					<div class="text-start">
-						<span class="mb-2">Servizi:</span>
-						<ul>
+					<div class="text-start mb-2">
+						<ul class="p-0">
 							@foreach ($apartment->services as $service)
-								<li  class="badge my-services text-bg-primary rounded-pill">
+								<li class="badge text-dark my-services fs-6 me-2 p-0">
 									{{ $service->service_name }}
 								</li>
                         	@endforeach
@@ -58,9 +77,9 @@
 					</div>
 
 					<div class="row">
-						<div class="d-flex justify-content-between">
+						<div class="d-flex">
 							<div class="d-inline-block me-3">
-								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-success mb-4"><- Indietro</a>
+								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-secondary mb-4"><- Indietro</a>
 							</div>
 
 							<div class="d-inline-block me-3">
@@ -71,17 +90,13 @@
 								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
 								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
 								method="POST" 
-								class="d-inline-block">
+								class="d-inline-block ms-auto">
 								@csrf
 								@method('DELETE')
 								<button type="submit" class="btn btn-danger">
 									Elimina
 								</button>
 							</form>
-
-							<div class="d-inline-block me-3">
-								<a href="{{ route('admin.sponsorships.index', ['apartment_id' => $apartment->id]) }}"  class="btn btn-outline-primary mb-4">Sponsorizza</a>
-							</div>
 						</div>
 					</div>
 				</div>
