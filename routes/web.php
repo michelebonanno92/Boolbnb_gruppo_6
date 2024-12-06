@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SponsorshipController as AdminSponsorshipController;
-use App\Http\Controllers\Admin\PaymentController;
 
 
 use App\Http\Controllers\Admin\ServiceController;
