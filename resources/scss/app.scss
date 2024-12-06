@@ -56,3 +56,9 @@ ul {
         cursor: pointer;
     }
 }
+.message-link {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
