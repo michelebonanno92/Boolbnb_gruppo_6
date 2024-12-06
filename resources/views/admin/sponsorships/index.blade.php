@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 
-@section('page-title', 'Sponsorizzazioni')
+@section('page-title', 'Sponsorizza Appartamento')
 
 @section('main-content')
 

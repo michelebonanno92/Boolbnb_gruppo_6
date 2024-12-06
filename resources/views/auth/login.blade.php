@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('page-title', 'BoolBnb Login')
+
 @section('main-content')
     <form method="POST" action="{{ route('login') }}">
         @csrf

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title' , 'Crea il tuo appartmanto')
+@section('page-title' , 'Crea Appartamento')
 
 @section('main-content')
 
@@ -8,13 +8,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-6 offset-md-3">
-			<h1>
+			{{-- <h1>
 				Crea Appartamento
-			  </h1>
-			  
-			  <div class="mb-3">
-				<span class="text-danger">*</span>Campi obbligatori
-			  </div>
+			</h1> --}}
+			
+			<div class="mb-3">
+			<span class="text-danger">*</span>Campi obbligatori
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Dashboard')
+@section('page-title', ' BoolBnb Dashboard')
 
 @section('main-content')
 <div class="container">
