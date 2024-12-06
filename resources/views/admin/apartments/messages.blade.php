@@ -4,17 +4,9 @@
 
 @section('main-content')
 <div class="container">
-    <h1 class="mb-4">Messaggi per l'appartamento: {{ $apartment->title }}</h1>
+    <h1 class="text-center mb-4">Messaggi dell'appartamento: {{ $apartment->title }}</h1>
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <h4>{{ $apartment->title }}</h4>
-            <p><strong>Indirizzo:</strong> {{ $apartment->address }}</p>
-            <p><strong>Descrizione:</strong> {{ $apartment->description }}</p>
-        </div>
-    </div>
-
-    <h2>Messaggi ricevuti</h2>
+    <h2 class="text-center">Messaggi ricevuti</h2>
     @if($messages->isEmpty())
         <p>Non ci sono messaggi per questo appartamento.</p>
     @else
@@ -23,8 +15,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Messaggio</th>
                     <th>Data</th>
+                    <th>visualizza</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +24,8 @@
                     <tr>
                         <td>{{ $message->name }}</td>
                         <td>{{ $message->email }}</td>
-                        <td>{{ $message->message }}</td>
                         <td>{{ $message->created_at->format('d/m/Y H:i') }}</td>
+                        <td><a href="{{ route('admin.messages.show', $message->id) }}" class="btn btn-warning">Visualizza</a></td>
                     </tr>
                 @endforeach
             </tbody>

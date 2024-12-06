@@ -56,8 +56,11 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Message $message)
+    public function show(Message $message, Apartment $apartment)
     {
+        // if ($apartment->user_id !== auth()->id()) {
+        //     abort(403, 'Non sei autorizzato a visualizzare i messaggi di questo appartamento.');
+        // }
         // $user = auth()->user();
 
         // $apartments = Apartment::where('user_id', $user->id)->get();
@@ -65,7 +68,7 @@ class MessageController extends Controller
         // // $apartments = Apartment::where('apartment_id', $apartments->id)->get();
         // $messages = Message::whereIn('apartment_id', $apartments->pluck('id'))->with('apartment')->get();
 
-        return view('admin.messages.show', compact('message'));
+        return view('admin.messages.show', compact('message', 'apartment'));
     }
 
     /**
