@@ -246,4 +246,17 @@ class ApartmentController extends Controller
 
         return redirect()->route('admin.apartments.index');
     }
+
+    public function messages(Apartment $apartment)
+    {
+        // Controlla se l'utente è autorizzato a vedere i messaggi dell'appartamento
+        if ($apartment->user_id !== auth()->id()) {
+            abort(403, 'Non sei autorizzato a visualizzare i messaggi di questo appartamento.');
+        }
+
+        // Recupera i messaggi associati all'appartamento
+        $messages = $apartment->messages()->latest()->get();
+
+        return view('admin.apartments.messages', compact('apartment', 'messages'));
+    }
 }

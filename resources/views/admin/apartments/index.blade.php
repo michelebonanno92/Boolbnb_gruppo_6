@@ -94,7 +94,7 @@
 
                             <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-warning my-4">Modifica</a>
                             
-                            <a href="{{ route('admin.messages.index') }}"  class="btn btn-outline-warning my-4">Messaggi</a>
+                            <a href="{{ route('admin.apartments.messages', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-warning my-4">Messaggi</a>
                             <form 
 								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
 								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
