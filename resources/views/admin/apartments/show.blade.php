@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', $apartment->slug )
+@section('page-title','BoolBnb '.$apartment->slug )
 
 @section('main-content')
 

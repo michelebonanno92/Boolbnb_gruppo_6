@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Appartamenti')
+@section('page-title', 'BoolBnb Appartamenti')
 
 @section('main-content')
     

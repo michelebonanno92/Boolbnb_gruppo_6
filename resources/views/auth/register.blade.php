@@ -1,5 +1,7 @@
 @extends('layouts.guest')
 
+@section('page-title', 'BoolBnb Registrazione')
+
 @section('main-content')
     <div class="container">
         <div class="row">

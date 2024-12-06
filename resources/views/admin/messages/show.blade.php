@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', $message->name)
+@section('page-title','Messaggio di '.$message->name)
 
 @section('main-content')
 
@@ -16,6 +16,7 @@
             {{ $message->message }}
         </div>
         <input type="text" class="form-control mb-3">
+        <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-secondary">Indietro</a>
         <button class="btn btn-outline-warning">
             Rispondi
         </button>
