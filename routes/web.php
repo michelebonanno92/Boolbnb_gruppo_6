@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 // Controllers
-use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\ApartmentController as AdminApartmentController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SponsorshipController as AdminSponsorshipController;
-use App\Http\Controllers\Admin\PaymentController;
 
 
 use App\Http\Controllers\Admin\ServiceController;
@@ -31,7 +29,7 @@ use App\Http\Controllers\ApartmentController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/', [AdminMainController::class, 'showDashboard'])->name('home');
 
 Route::prefix('admin')
     ->name('admin.')
