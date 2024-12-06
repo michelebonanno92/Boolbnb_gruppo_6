@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 // MODELS
 use App\Models\User;
+use App\Models\Apartment;
 
 class MainController extends Controller
 {
@@ -21,6 +22,8 @@ class MainController extends Controller
     public function showDashboard()
     {
         $user = auth()->user();
+
+        $apartments = Apartment::where('user_id', $user->id)->get();
 
         // Ensure the user is authenticated
         if (!$user) {
@@ -52,7 +55,7 @@ class MainController extends Controller
         ->groupBy('views.apartment_id', 'users.id', 'apartments.title')
         ->get(); // Execute query and get results
         // Return the dashboard view with the data
-        return view('admin.dashboard', compact('messageCounts','viewsCounts','user'));
+        return view('admin.dashboard', compact('messageCounts','viewsCounts','user','apartments'));
     }
 
 }
