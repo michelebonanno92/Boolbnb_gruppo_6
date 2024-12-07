@@ -30,16 +30,16 @@
             <div class="row">
                 @forelse ($apartments as $apartment)
                 
-                <div class="col-12 col-lg-6 col-xxl-4 mb-3 d-flex">
-                    <div class="container  ">
+                <div class="col-12 col-lg-6 p-0 mb-3 d-flex">
+                    <div class="container">
 
-                        <div class="card my-card p-3  ">
+                        <div class="card my-card p-3">
                             <h4 class="mb-3 py-3 text-center">
                                 {{ $apartment->title }}
                             </h4>
-                            <div class="text-center">
+                            <div class="text-center my-img-container">
                                 @if ($apartment->image)
-                                <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="my-img rounded">
+                                    <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="my-img rounded">
                                 @else
                                 <img src="#" alt="da caricare" class="my-img rounded">
                                 @endif

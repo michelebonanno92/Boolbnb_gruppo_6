@@ -23,11 +23,13 @@
 
     }
 }
-
-.my-img {
-    max-width: 100%;
-    height: 350px;
+.my-img-container{
     min-height: 350px;
+}
+.my-img {
+    width: 100%;
+    // height: 350px;
+    // min-height: 350px;
 
 }
 
