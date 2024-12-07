@@ -59,12 +59,12 @@ class ApartmentController extends Controller
 
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
-            'description' => 'required|min:20|max:4096',
+            'description' => 'required|min:3|max:4096',
             'rooms' => 'required|min:1|max:20',
             'beds' => 'required|min:1|max:33',
             'toilets' => 'required|min:1|max:10',
             'square_meters' => 'required|min:1|max:300',
-            'address' => 'required|min:10|max:255',
+            'address' => 'required|min:3|max:255',
             'image' => 'nullable|image|max:2048',
             'services' => ['required', 'array', function ($attribute, $value, $fail) {
                 if (count($value) < 1) {
@@ -167,7 +167,7 @@ class ApartmentController extends Controller
             'beds' => 'required|min:1|max:33',
             'toilets' => 'required|min:1|max:10',
             'square_meters' => 'required|min:1|max:300',
-            'address' => 'required|min:10|max:255',
+            'address' => 'required|min:3|max:255',
             'image' => 'nullable|image|max:2048',
             'services' => ['required', 'array', function ($attribute, $value, $fail) {
                 if (count($value) < 1) {
