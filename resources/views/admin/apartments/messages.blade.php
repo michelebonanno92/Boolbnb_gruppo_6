@@ -6,7 +6,6 @@
 <div class="container">
     <h1 class="text-center mb-4">Messaggi dell'appartamento: {{ $apartment->title }}</h1>
 
-    <h2 class="text-center">Messaggi ricevuti</h2>
     @if($messages->isEmpty())
         <p>Non ci sono messaggi per questo appartamento.</p>
     @else
