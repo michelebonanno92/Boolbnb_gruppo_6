@@ -26,6 +26,8 @@
 
 .my-img {
     max-width: 100%;
+    height: 350px;
+    min-height: 350px;
 
 }
 
@@ -65,4 +67,9 @@ ul {
 
 .my-list {
     max-height: 75px;
+}
+
+.hour-sponsorship {
+    height: 50px;
+    min-height: 50px;
 }

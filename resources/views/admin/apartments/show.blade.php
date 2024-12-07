@@ -11,6 +11,8 @@
 					<div>
 						@if ($apartment->image)
 						  <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid rounded">
+						{{-- @else
+						  <img src="#" alt="da caricare" class="my-img rounded"> --}}
 						@endif
 					</div>
 					<h4 class="mt-4">
