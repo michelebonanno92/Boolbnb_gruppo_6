@@ -32,15 +32,15 @@
                 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
                     <div class="card my-card p-3">
+                        <h4 class="mb-3 text-center">
+                            {{ $apartment->title }}
+                        </h4>
                         <div class="text-center">
                             @if ($apartment->image)
                             <img src="{{ '/storage/'.$apartment->image }}" alt="{{ $apartment->title }}" class="my-img rounded">
                             @endif
                       </div>
-                        <h4 class="mb-2">
-                            {{ $apartment->title }}
-                        </h4>
-                        <ul class="my-list">
+                        <ul class="my-list ">
                             <li>
                                 Stanze: <span class="fw-bold">{{ $apartment->rooms }}</span>
                             </li>
@@ -70,7 +70,7 @@
                         <div class="mt-4">
                             <ul class="service-list mt-2">
                                 @foreach ($apartment->services as $service)
-                                    <li class="badge text-dark my-services fs-6">
+                                    <li class="btn btn-outline-warning fw-bold text-dark me-2 m-1 my-services fs-6">
                                         {{ $service->service_name }}
                                     </li>
                                 @endforeach
