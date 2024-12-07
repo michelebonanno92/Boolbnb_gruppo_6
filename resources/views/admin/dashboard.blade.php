@@ -6,7 +6,10 @@
 <div class="container mb-4 py-3">
     <div class="row ">
         <div class="col">
-            <img src="{{ asset('/boolbnbnew.png') }}" alt="boolbnb logo" class="h-75">
+            {{-- <img src="{{ asset('/boolbnbnew.png') }}" alt="boolbnb logo" class="h-75"> --}}
+            <div class="d-flex align-items-start justify-content-start py-2">
+                <i class="fa-solid fa-door-open me-1 text-warning fa-2x"></i><h4 class="text-dark m-0">BoolBnb</h4>
+            </div>
 
         </div>
         <div class="col-3 ms-auto d-flex justify-content-end pe-0 align-items-center  ">
