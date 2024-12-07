@@ -79,7 +79,7 @@
 					<div class="row">
 						<div class="d-flex">
 							<div class="d-inline-block me-3">
-								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-secondary mb-4"><- Indietro</a>
+								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-secondary mb-4">Indietro</a>
 							</div>
 
 							<div class="d-inline-block me-3">

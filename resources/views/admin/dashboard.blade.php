@@ -120,10 +120,17 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="{{ route('admin.apartments.index') }}">Tutti gli appartamenti</a>
+            {{-- <a href="{{ route('admin.apartments.index') }}">Tutti gli appartamenti</a> --}}
+            {{-- <a class="nav-link btn btn" href="{{ route('admin.apartments.index') }}">
+                <i class="fa-solid fa-house-flag"></i>
+                Appartamenti
+            </a> --}}
+            <a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-success my-4 w-100">Appartamenti</a>
+
         </div>
         <div class="col">
-            <a href="{{ route('admin.apartments.create') }}">Aggiungi appartamenti</a>
+            <a href="{{ route('admin.apartments.create') }}" class="btn btn-outline-success my-4 w-100">Nuovo appartamento</a>
+            {{-- <a href="{{ route('admin.apartments.create') }}">Aggiungi appartamenti</a> --}}
         </div>
     </div>
 </div>
