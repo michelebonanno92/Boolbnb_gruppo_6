@@ -198,12 +198,14 @@
 							</div>
 							
 					</div>
-				
-				
-				
-					<button type="submit" class="btn btn-primary w-100">
-					+ Modifica
-					</button>
+					<div class="d-flex justify-content-between align-items-center">
+						<button type="submit" class="btn btn-outline-secondary me-2 w-100">
+							Indietro
+						</button>
+						<button type="submit" class="btn btn-primary w-100">
+							+ Modifica
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>

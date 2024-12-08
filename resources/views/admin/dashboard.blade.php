@@ -120,7 +120,7 @@
             <a href="{{ route('admin.apartments.index') }}" class="mt-4 btn btn-outline-primary w-100">Tutti gli appartamenti</a>
         </div>
         <div class="col">
-            <a href="{{ route('admin.apartments.create') }}" class="mt-4 btn btn-outline-primary w-100">Aggiungi appartamenti</a>
+            <a href="{{ route('admin.apartments.create') }}" class="mt-4 btn btn-primary w-100">Aggiungi appartamenti</a>
         </div>
     </div>
 </div>

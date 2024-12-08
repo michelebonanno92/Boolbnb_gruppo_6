@@ -24,19 +24,20 @@
     }
 }
 .my-img-container{
-    min-height: 350px;
+    height: 350px;
 }
 .my-img {
-    width: 100%;
-    // height: 350px;
-    // min-height: 350px;
+    width: 100%; /* L'immagine occupa tutta la larghezza */
+    height: 100%; /* L'immagine occupa tutta l'altezza del carosello */
+    object-fit: cover; /* Riempi il contenitore mantenendo le proporzioni */
+    object-position: center; /* Centra l'immagine */
 
 }
 
 ul {
     list-style: none;
     padding: 0;
-    height: 100%;
+    // height: 100%;
 
     .badge {
         padding: 5px 10px;
@@ -67,9 +68,9 @@ ul {
     }
 }
 
-.my-list {
-    max-height: 75px;
-}
+// .my-list {
+//     max-height: 75px;
+// }
 
 .hour-sponsorship {
     height: 50px;
