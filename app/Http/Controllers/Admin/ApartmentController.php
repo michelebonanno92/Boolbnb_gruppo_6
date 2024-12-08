@@ -174,7 +174,7 @@ class ApartmentController extends Controller
                         $fail('Devi selezionare almeno un servizio.');
                     }
                 }],
-            'sponsorships' => 'nullable|array',
+            // 'sponsorships' => 'nullable|array',
 
             // 'visible' => 'nullable|in:1,0,true,false',
         ], $messages);
@@ -220,7 +220,7 @@ class ApartmentController extends Controller
 
         $apartment->services()->sync($data['services'] ?? []);
 
-        $apartment->sponsorships()->sync($data['sponsorships'] ?? []);
+        // $apartment->sponsorships()->sync($data['sponsorships'] ?? []);
 
 
         // $apartment->services()->sync($data['services'] ?? []);
