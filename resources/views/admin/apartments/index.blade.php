@@ -12,7 +12,7 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-4 offset-md-4 mb-2">
+                <div class="col-12 mb-2">
                     <div>
                         <a href="{{ route('admin.apartments.create') }}" class="btn btn-outline-primary my-4 w-100">Nuovo appartamento</a>
                     </div>
@@ -55,14 +55,14 @@
                                     @if($apartment->sponsorships->count())
                                         @if($apartment->sponsorships->count() > 1)
                                             <i class="fa-solid fa-bolt fa-2x me-2 text-warning"></i>
-                                            <strong class="fs-4">
+                                            <strong class="fs-4 me-1">
                                                 {{ $apartment->sponsorships->sum('duration_hours') }}
                                             </strong>
                                             <strong class="fs-4">ore</strong>
                                         @else
                                             <i class="fa-solid fa-bolt fa-2x me-2 text-warning"></i>
-                                            <strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
-                                            <span class="fs-4">ore</span>
+                                            <strong class="fs-4 me-1">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
+                                            <strong class="fs-4">ore</strong>
                                         @endif
                                     @endif
                                 </div>
@@ -73,7 +73,7 @@
                                 @else
                                 <img src="#" alt="da caricare" class="my-img rounded">
                                 @endif
-                            </div>
+                            </div>
                             <ul class="m-0 mb-2 p-0">
                                 <li class="m-0 p-0">
                                     Stanze: <span class="fw-bold">{{ $apartment->rooms }}</span>

@@ -19,7 +19,7 @@
 						{{ $apartment->title }}
 					</h4>
 
-					<div class="d-flex justify-content-center my-2">
+					<div class="d-flex justify-content-center align-items-center my-2">
 						<div class="me-3 py-2">
 							@if ($apartment->visible)
 		
@@ -36,15 +36,15 @@
 							@if($apartment->sponsorships->count())
 								<div>
 									@if($apartment->sponsorships->count() > 1)
-										<i class="fa-solid fa-bolt text-warning fs-4"></i>
-										<strong class="fs-4">
+										<i class="fa-solid fa-bolt fa-2x text-warning"></i>
+										<strong class="fs-4 me-1">
 											{{ $apartment->sponsorships->sum('duration_hours') }}
 										</strong>
 										<strong class="fs-4">ore</strong>
 									@else
-										<i class="fa-solid fa-bolt text-warning"></i>
-										<strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
-										<span class="fs-4">ore</span>
+										<i class="fa-solid fa-bolt fa-2x text-warning"></i>
+										<strong class="fs-4 me-1">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
+										<strong class="fs-4">ore</strong>
 									@endif
 								</div>
 							@endif
