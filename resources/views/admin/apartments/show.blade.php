@@ -18,10 +18,11 @@
 					<h4 class="mt-4 ">
 						{{ $apartment->title }}
 					</h4>
-					<div class="d-flex justify-content-center mb-3">
+
+					<div class="d-flex justify-content-center my-2">
 						<div class="me-3">
 							@if ($apartment->visible)
-	
+		
 								<i class="fa-solid text-success fa-2x fa-eye"></i>
 	
 							@else
@@ -29,25 +30,29 @@
 								<i class="fa-solid text-danger fa-2x fa-eye-slash"></i>
 	
 							@endif
-							
+
 						</div>
 						<div>
 							@if($apartment->sponsorships->count())
-								@if($apartment->sponsorships->count() > 1)
-									<i class="fa-solid fa-bolt text-warning"></i>
-									<strong class="fs-4">
-										{{ $apartment->sponsorships->sum('duration_hours') }}
-									</strong>
-									<strong class="fs-4">ore</strong>
-								@else
-									<i class="fa-solid fa-bolt text-warning"></i>
-									<strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
-									<span class="fs-4">ore</span>
-								@endif
+								<div>
+									@if($apartment->sponsorships->count() > 1)
+										<i class="fa-solid fa-bolt text-warning fs-4"></i>
+										<strong class="fs-4">
+											{{ $apartment->sponsorships->sum('duration_hours') }}
+										</strong>
+										<strong class="fs-4">ore</strong>
+									@else
+										<i class="fa-solid fa-bolt text-warning"></i>
+										<strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
+										<span class="fs-4">ore</span>
+									@endif
+								</div>
 							@endif
 							
 						</div>
-		            </div>
+
+					</div>
+					
 					{{-- <div class="mb-2">
 					</div> --}}
 					<div>
