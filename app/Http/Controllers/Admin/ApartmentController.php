@@ -127,6 +127,9 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        if ($apartment->user_id !== auth()->id()) {
+            abort(403, 'Non sei autorizzato a visualizzare questo appartamento.');
+        }
         return view('admin.apartments.show', compact('apartment'));
 
     }
