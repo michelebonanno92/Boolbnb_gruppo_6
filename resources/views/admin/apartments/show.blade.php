@@ -20,7 +20,7 @@
 					</h4>
 
 					<div class="d-flex justify-content-center my-2">
-						<div class="me-3">
+						<div class="me-3 py-2">
 							@if ($apartment->visible)
 		
 								<i class="fa-solid text-success fa-2x fa-eye"></i>
