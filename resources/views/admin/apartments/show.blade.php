@@ -99,6 +99,10 @@
 							<div class="d-inline-block me-3">
 								<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-primary mb-4">Modifica</a>
 							</div>
+
+							<div class="d-inline-block me-3">
+								<a href="{{ route('admin.apartments.messages', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-primary mb-4">Messaggi</a>
+							</div>
 							
 							<form 
 								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
