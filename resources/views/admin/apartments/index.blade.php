@@ -54,13 +54,13 @@
                                 <div class="d-flex align-items-center justify-content-center">
                                     @if($apartment->sponsorships->count())
                                         @if($apartment->sponsorships->count() > 1)
-                                            <i class="fa-solid fa-bolt fa-2x text-warning"></i>
+                                            <i class="fa-solid fa-bolt fa-2x me-2 text-warning"></i>
                                             <strong class="fs-4">
                                                 {{ $apartment->sponsorships->sum('duration_hours') }}
                                             </strong>
                                             <strong class="fs-4">ore</strong>
                                         @else
-                                            <i class="fa-solid fa-bolt fa-2x text-warning"></i>
+                                            <i class="fa-solid fa-bolt fa-2x me-2 text-warning"></i>
                                             <strong class="fs-4">{{ $apartment->sponsorships->first()->duration_hours }}</strong>
                                             <span class="fs-4">ore</span>
                                         @endif
