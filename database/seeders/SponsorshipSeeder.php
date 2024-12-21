@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Sponsorship;
+use Illuminate\Support\Facades\Schema;
 
 class SponsorshipSeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class SponsorshipSeeder extends Seeder
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
+        Sponsorship::truncate();
+        Schema::enableForeignKeyConstraints();
+
         $sponsorships = [
             [
                 'name' => '24h',
