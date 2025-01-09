@@ -90,38 +90,40 @@
 						</ul>
 					</div>
 
-					<div class="row">
 
-						<div class="col-12 col-sm-6 d-flex">
-							<div class="me-3">
-								<a href="{{ route('admin.apartments.index') }}" class="btn btn-outline-secondary mb-4">Indietro</a>
+					<div class="row justify-content-start">
+						<div class="col-12 col-md-3">
+							<div class="w-100 mb-2">
+								<a href="{{ route('admin.apartments.index') }}" class=" btn d-inline-block btn-primary w-100 me-2">Indietro</a>
 							</div>
-
-							<div class="me-3">
-								<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-primary mb-4">Modifica</a>
-							</div>
-						
-
-					
-							<div class="me-3">
-								<a href="{{ route('admin.apartments.messages', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-primary mb-4">Messaggi</a>
-							</div>
-							
-							<form 
-								onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
-								action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
-								method="POST" 
-								class="ms-auto">
-								@csrf
-								@method('DELETE')
-								<button type="submit" class="btn btn-danger">
-									Elimina
-								</button>
-							</form>
 						</div>
-
-						
+						<div class="col-12 col-md-3">
+							<div class="w-100 mb-2">
+								<a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->id ]) }}" class="btn btn-outline-primary w-100 me-2 ps-2">Modifica</a>
+							</div>
+						</div>
+						<div class="col-12 col-md-3">
+							<div class="w-100 mb-2">
+								<a href="{{ route('admin.apartments.messages', ['apartment' => $apartment->id ]) }}"  class="btn btn-outline-primary w-100 me-2 ps-1">Messaggi</a>
+							</div>
+						</div>
+						<div class="col-12 col-md-3 ms-auto">
+							<div class="w-100 mb-2">
+								<form 
+									onsubmit="return confirm('Sei sicuro di voler cancellare questo appartamento?')"
+									action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->id]) }}" 
+									method="POST" 
+									class="d-inline-block w-100">
+									@csrf
+									@method('DELETE')
+									<button type="submit" class="btn w-100 btn-danger">
+										Elimina
+									</button>
+								</form>
+							</div>
+						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
